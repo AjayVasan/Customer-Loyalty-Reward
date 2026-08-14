@@ -292,7 +292,7 @@ sap.ui.define(
       onRateHintRefresh: function () {
         if (!this.byId('rateHint')) return
         const cust = this.getView().getModel('ui').getProperty('/staffCustomer')
-        const channel = this.byId('purchaseChannel') ? this.byId('purchaseChannel').getSelectedKey() : 'Online'
+        const channel = this.byId('purchaseChannel') ? (this.byId('purchaseChannel').getSelectedKey() || 'Online') : 'Online'
         const h = this._purchaseHint(
           this.byId('purchasePrice') ? this.byId('purchasePrice').getValue() : '0',
           this.byId('purchasePoints') ? this.byId('purchasePoints').getValue() : '0',
@@ -305,7 +305,7 @@ sap.ui.define(
       onRecordPurchase: async function () {
         const ui = this.getView().getModel('ui')
         const cust = ui.getProperty('/staffCustomer')
-        const channel = this.byId('purchaseChannel').getSelectedKey()
+        const channel = this.byId('purchaseChannel').getSelectedKey() || 'Online'
         const price = parseFloat(this.byId('purchasePrice').getValue())
         const points = Math.floor(parseFloat(this.byId('purchasePoints').getValue() || '0') || 0)
         if (!cust || !channel || !(price > 0)) {
@@ -347,7 +347,7 @@ sap.ui.define(
       onCustPurchaseHint: function () {
         if (!this.byId('custRateHint')) return
         const me = this.getView().getModel('ui').getProperty('/me')
-        const channel = this.byId('custChannel') ? this.byId('custChannel').getSelectedKey() : 'Online'
+        const channel = this.byId('custChannel') ? (this.byId('custChannel').getSelectedKey() || 'Online') : 'Online'
         const h = this._purchaseHint(
           this.byId('custPrice') ? this.byId('custPrice').getValue() : '0',
           this.byId('custPoints') ? this.byId('custPoints').getValue() : '0',
@@ -359,7 +359,7 @@ sap.ui.define(
       onCustomerPurchase: async function () {
         const ui = this.getView().getModel('ui')
         const me = ui.getProperty('/me')
-        const channel = this.byId('custChannel').getSelectedKey()
+        const channel = this.byId('custChannel').getSelectedKey() || 'Online'
         const price = parseFloat(this.byId('custPrice').getValue())
         const points = Math.floor(parseFloat(this.byId('custPoints').getValue() || '0') || 0)
         if (!me.customerID || !channel || !(price > 0)) {

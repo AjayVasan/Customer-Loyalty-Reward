@@ -122,7 +122,8 @@
                       <Button text="{i18n>staffSearchBtn}" icon="sap-icon://search" press=".onStaffSearch" type="Emphasized" />
                     </HBox>
                     <VBox id="staffCustomerCard" class="sapUiMediumMarginTop" visible="{= !!${ui>/staffCustomer} }">
-                      <ObjectHeader title="{ui>/staffCustomer/name}" intro="{ui>/staffCustomer/email}">
+                      <ObjectHeader title="{ui>/staffCustomer/name}" intro="{ui>/staffCustomer/email}"
+                        number="{ui>/staffCustomer/totalPoints}" numberUnit="pts">
                         <statuses>
                           <ObjectStatus text="{i18n>custTier}: {ui>/staffCustomer/tier}" state="Information" />
                         </statuses>
