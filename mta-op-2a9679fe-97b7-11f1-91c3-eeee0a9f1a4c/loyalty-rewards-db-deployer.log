@@ -1,0 +1,432 @@
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:07:40.573566] Updated app with guid 14abe4c7-062a-499e-b7d4-4f73c68d95af ({"lifecycle"=>{"data"=>{"buildpacks"=>["nodejs_buildpack"]}, "type"=>"buildpack"}}) (STDOUT, API)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:07:40.663355] Updating process: "web" (STDOUT, API)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:07:51.575842] Uploading app package for app with guid 14abe4c7-062a-499e-b7d4-4f73c68d95af (STDOUT, API)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:07:51.750108] Updated app with guid 14abe4c7-062a-499e-b7d4-4f73c68d95af ({"environment_variables"=>"[PRIVATE DATA HIDDEN]"}) (STDOUT, API)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:01.610668] Creating build for app with guid 14abe4c7-062a-499e-b7d4-4f73c68d95af (STDOUT, API)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:02.052052] Downloading nodejs_buildpack... (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:02.085842] Downloaded nodejs_buildpack (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:02.085944] Cell 684caff8-89cd-492b-be01-b3d0835f1763 creating container for instance 312fa43b-d725-4023-a5aa-b54d36663841 (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:02.861868] Security group rules were updated (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:02.964849] Cell 684caff8-89cd-492b-be01-b3d0835f1763 successfully created container for instance 312fa43b-d725-4023-a5aa-b54d36663841 (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:03.442075] Downloading app package... (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:03.442130] Downloading build artifacts cache... (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:03.515861] Downloaded build artifacts cache (225B) (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:03.800972] Downloaded app package (2.3M) (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:03.925206] -----> Nodejs Buildpack version 1.9.2 (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:04.099312] -----> Bootstrapping python (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:04.099327] -----> Installing python 3.13.13 (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:04.099520] Copy [/tmp/buildpacks/17bd89c67d092631/dependencies/268a5e3743d51a14b86ea9da64439307/python_3.13.13_linux_x64_cflinuxfs4_8311abbf.tgz] (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:08.627203] -----> Installing binaries (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:08.627422] engines.node (package.json): >=18 (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:08.627438] engines.npm (package.json): unspecified (use default) (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:08.627551] [31;1m**WARNING**[0m Dangerous semver range (>) in engines.node. See: http://docs.cloudfoundry.org/buildpacks/node/node-tips.html (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:08.636408] -----> Installing node 24.15.0 (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:08.636760] Copy [/tmp/buildpacks/17bd89c67d092631/dependencies/6441e97e6386f47ec4c16cfdf8db0a17/node_24.15.0_linux_x64_cflinuxfs4_1a62d98b.tgz] (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.430160] Using default npm version: 11.12.1 (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.430188] -----> Installing yarn 1.22.22 (STDOUT, STG)#
+#2026 08 14 08:08:11.548#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-16323#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.430367] Copy [/tmp/buildpacks/17bd89c67d092631/dependencies/e4fe26756e9984a665478d350474fa2e/yarn_1.22.22_linux_noarch_any-stack_b6132b86.tgz] (STDOUT, STG)#
+#2026 08 14 08:08:21.664#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-14976#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.807370] Installed yarn 1.22.22 (STDOUT, STG)#
+#2026 08 14 08:08:21.664#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-14976#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.807401] -----> Creating runtime environment (STDOUT, STG)#
+#2026 08 14 08:08:21.664#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-14976#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809174] NODE_ENV=production (STDOUT, STG)#
+#2026 08 14 08:08:21.664#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-14976#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809196] NODE_HOME=/tmp/contents1920505241/deps/0/node (STDOUT, STG)#
+#2026 08 14 08:08:21.664#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-14976#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809249] NODE_MODULES_CACHE=true (STDOUT, STG)#
+#2026 08 14 08:08:21.664#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-14976#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809320] NODE_VERBOSE=false (STDOUT, STG)#
+#2026 08 14 08:08:21.664#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-14976#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809372] NPM_CONFIG_LOGLEVEL=error (STDOUT, STG)#
+#2026 08 14 08:08:21.664#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-14976#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809385] NPM_CONFIG_PRODUCTION=true (STDOUT, STG)#
+#2026 08 14 08:08:21.664#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-14976#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809428] -----> Building dependencies (STDOUT, STG)#
+#2026 08 14 08:08:21.664#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-14976#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809480] Prebuild detected (node_modules already exists) (STDOUT, STG)#
+#2026 08 14 08:08:21.664#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-14976#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809536] Rebuilding any native modules (STDOUT, STG)#
+#2026 08 14 08:08:21.664#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-14976#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:12.411636] rebuilt dependencies successfully (STDOUT, STG)#
+#2026 08 14 08:08:21.664#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-14976#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:12.479097] Installing any new modules (package.json + package-lock.json) (STDOUT, STG)#
+#2026 08 14 08:08:21.664#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-14976#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:13.003185] up to date in 436ms (STDOUT, STG)#
+#2026 08 14 08:08:21.664#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-14976#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:13.003522] 4 packages are looking for funding (STDOUT, STG)#
+#2026 08 14 08:08:21.664#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-14976#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:13.003539] run `npm fund` for details (STDOUT, STG)#
+#2026 08 14 08:08:21.664#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-14976#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:13.683731] Contrast Security no credentials found. Will not write environment files. (STDOUT, STG)#
+#2026 08 14 08:08:31.726#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29098#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:23.226768] Exit status 0 (STDOUT, STG)#
+#2026 08 14 08:08:31.726#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29098#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:23.226813] Uploading droplet, build artifacts cache... (STDOUT, STG)#
+#2026 08 14 08:08:31.726#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29098#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:23.226856] Uploading droplet... (STDOUT, STG)#
+#2026 08 14 08:08:31.726#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29098#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:23.226894] Uploading build artifacts cache... (STDOUT, STG)#
+#2026 08 14 08:08:31.726#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29098#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:23.250238] Uploaded build artifacts cache (225B) (STDOUT, STG)#
+#2026 08 14 08:08:31.726#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29098#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:24.083947] Creating droplet for app with guid 14abe4c7-062a-499e-b7d4-4f73c68d95af (STDOUT, API)#
+#2026 08 14 08:08:31.726#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29098#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:27.150147] Uploaded droplet (58.6M) (STDOUT, STG)#
+#2026 08 14 08:08:31.726#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29098#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:27.178026] Uploading complete (STDOUT, STG)#
+#2026 08 14 08:08:31.726#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29098#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:28.009730] Cell 684caff8-89cd-492b-be01-b3d0835f1763 stopping instance 312fa43b-d725-4023-a5aa-b54d36663841 (STDOUT, STG)#
+#2026 08 14 08:08:31.726#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29098#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:28.009770] Cell 684caff8-89cd-492b-be01-b3d0835f1763 destroying container for instance 312fa43b-d725-4023-a5aa-b54d36663841 (STDOUT, STG)#
+#2026 08 14 08:08:31.726#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29098#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:28.059550] Staging complete for build 312fa43b-d725-4023-a5aa-b54d36663841 (STDOUT, API)#
+#2026 08 14 08:08:31.726#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29098#
+[PollStageAppStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:30.518478] Cell 684caff8-89cd-492b-be01-b3d0835f1763 successfully destroyed container for instance 312fa43b-d725-4023-a5aa-b54d36663841 (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:07:40.573566] Updated app with guid 14abe4c7-062a-499e-b7d4-4f73c68d95af ({"lifecycle"=>{"data"=>{"buildpacks"=>["nodejs_buildpack"]}, "type"=>"buildpack"}}) (STDOUT, API)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:07:40.663355] Updating process: "web" (STDOUT, API)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:07:51.575842] Uploading app package for app with guid 14abe4c7-062a-499e-b7d4-4f73c68d95af (STDOUT, API)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:07:51.750108] Updated app with guid 14abe4c7-062a-499e-b7d4-4f73c68d95af ({"environment_variables"=>"[PRIVATE DATA HIDDEN]"}) (STDOUT, API)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:01.610668] Creating build for app with guid 14abe4c7-062a-499e-b7d4-4f73c68d95af (STDOUT, API)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:02.052052] Downloading nodejs_buildpack... (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:02.085842] Downloaded nodejs_buildpack (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:02.085944] Cell 684caff8-89cd-492b-be01-b3d0835f1763 creating container for instance 312fa43b-d725-4023-a5aa-b54d36663841 (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:02.861868] Security group rules were updated (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:02.964849] Cell 684caff8-89cd-492b-be01-b3d0835f1763 successfully created container for instance 312fa43b-d725-4023-a5aa-b54d36663841 (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:03.442075] Downloading app package... (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:03.442130] Downloading build artifacts cache... (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:03.515861] Downloaded build artifacts cache (225B) (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:03.800972] Downloaded app package (2.3M) (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:03.925206] -----> Nodejs Buildpack version 1.9.2 (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:04.099312] -----> Bootstrapping python (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:04.099327] -----> Installing python 3.13.13 (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:04.099520] Copy [/tmp/buildpacks/17bd89c67d092631/dependencies/268a5e3743d51a14b86ea9da64439307/python_3.13.13_linux_x64_cflinuxfs4_8311abbf.tgz] (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:08.627203] -----> Installing binaries (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:08.627422] engines.node (package.json): >=18 (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:08.627438] engines.npm (package.json): unspecified (use default) (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:08.627551] [31;1m**WARNING**[0m Dangerous semver range (>) in engines.node. See: http://docs.cloudfoundry.org/buildpacks/node/node-tips.html (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:08.636408] -----> Installing node 24.15.0 (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:08.636760] Copy [/tmp/buildpacks/17bd89c67d092631/dependencies/6441e97e6386f47ec4c16cfdf8db0a17/node_24.15.0_linux_x64_cflinuxfs4_1a62d98b.tgz] (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.430160] Using default npm version: 11.12.1 (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.430188] -----> Installing yarn 1.22.22 (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.430367] Copy [/tmp/buildpacks/17bd89c67d092631/dependencies/e4fe26756e9984a665478d350474fa2e/yarn_1.22.22_linux_noarch_any-stack_b6132b86.tgz] (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.807370] Installed yarn 1.22.22 (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.807401] -----> Creating runtime environment (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809174] NODE_ENV=production (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809196] NODE_HOME=/tmp/contents1920505241/deps/0/node (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809249] NODE_MODULES_CACHE=true (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809320] NODE_VERBOSE=false (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809372] NPM_CONFIG_LOGLEVEL=error (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809385] NPM_CONFIG_PRODUCTION=true (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809428] -----> Building dependencies (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809480] Prebuild detected (node_modules already exists) (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:11.809536] Rebuilding any native modules (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:12.411636] rebuilt dependencies successfully (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:12.479097] Installing any new modules (package.json + package-lock.json) (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:13.003185] up to date in 436ms (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:13.003522] 4 packages are looking for funding (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:13.003539] run `npm fund` for details (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:13.683731] Contrast Security no credentials found. Will not write environment files. (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:23.226768] Exit status 0 (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:23.226813] Uploading droplet, build artifacts cache... (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:23.226856] Uploading droplet... (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:23.226894] Uploading build artifacts cache... (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:23.250238] Uploaded build artifacts cache (225B) (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:24.083947] Creating droplet for app with guid 14abe4c7-062a-499e-b7d4-4f73c68d95af (STDOUT, API)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:27.150147] Uploaded droplet (58.6M) (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:27.178026] Uploading complete (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:28.009730] Cell 684caff8-89cd-492b-be01-b3d0835f1763 stopping instance 312fa43b-d725-4023-a5aa-b54d36663841 (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:28.009770] Cell 684caff8-89cd-492b-be01-b3d0835f1763 destroying container for instance 312fa43b-d725-4023-a5aa-b54d36663841 (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:28.059550] Staging complete for build 312fa43b-d725-4023-a5aa-b54d36663841 (STDOUT, API)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:30.518478] Cell 684caff8-89cd-492b-be01-b3d0835f1763 successfully destroyed container for instance 312fa43b-d725-4023-a5aa-b54d36663841 (STDOUT, STG)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:31.806294] Updated app with guid 14abe4c7-062a-499e-b7d4-4f73c68d95af ({:droplet_guid=>"aa8782bc-caac-4ec6-8157-00309eb85721"}) (STDOUT, API)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:32.519847] Cell 684caff8-89cd-492b-be01-b3d0835f1763 creating container for instance f28dff71-9e6f-4c07-a5b9-1180d5616327 (STDOUT, CELL)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:33.445239] Security group rules were updated (STDOUT, CELL)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:33.543160] Cell 684caff8-89cd-492b-be01-b3d0835f1763 successfully created container for instance f28dff71-9e6f-4c07-a5b9-1180d5616327 (STDOUT, CELL)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:38.387077] Invoking pre-start scripts. (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:38.599185] Invoking start command. (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.085754] > start (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.085783] > node node_modules/@sap/hdi-deploy/deploy.js --use-hdb --parameter com.sap.hana.di.table/try_fast_table_migration=true (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.248708] VCAP_SERVICES: (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249545] { (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249559] "hana": [ (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249567] { (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249571] "name": "loyalty-rewards-db", (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249574] "label": "hana", (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249577] "plan": "hdi-shared", (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249580] "credentials": { (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249582] "schema": "4063DFF510AB4914B480BA97746A39E1", (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249584] "database_id": "d2cc5828-70b2-4197-9549-bc87aa549cdd", (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249588] "user": "4063DFF510AB4914B480BA97746A39E1_97YQ0EAUZ9YNWMPC0HO3K76DG_RT", (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249592] "hdi_user": "4063DFF510AB4914B480BA97746A39E1_97YQ0EAUZ9YNWMPC0HO3K76DG_DT" (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249594] }, (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249597] "tags": [ (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249599] "hana", (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249606] "database", (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249610] "relational" (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249612] ] (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249614] } (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249616] ] (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.249618] } (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.716927] @sap/hdi-deploy, version 5.7.0 (mode default), server version 4.00.000.00.1785229725 (4.0.0.0), cloud version 2026.14.13, node version 24.15.0, HDI version 1016, container API version 1007 (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.716981] Deployment started at 2026-08-14 08:08:39 (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.717284] Using hdb@2.29.5 for connection (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.736626] No ignore file at /home/vcap/app/.hdiignore. (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.736938] Collecting files... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.743375] Collecting files... ok (0s 6ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.743403] 3 directories collected (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.743497] 44 files collected (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.743604] 0 reusable modules collected (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.743625] Target service: loyalty-rewards-db (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.925488] Previous build with request ID 246 finished at 2026-08-14T07:50:41.732 with status Rolled back and message: Starting make in the container "4063DFF510AB4914B480BA97746A39E1" with 0 files to deploy, 0 files to undeploy... ok. (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.925529] Processing revoke files... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.925701] Processing revoke files... ok (0s 0ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.925835] Processing grants files... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.925851] Processing grants files... ok (0s 0ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.928708] Preprocessing files... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.929017] Preprocessing files... ok (0s 0ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.929121] Connecting to the container "4063DFF510AB4914B480BA97746A39E1"... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.996633] Connecting to the container "4063DFF510AB4914B480BA97746A39E1"... ok (0s 67ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:39.996668] Locking the container "4063DFF510AB4914B480BA97746A39E1"... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:40.126082] Locking the container "4063DFF510AB4914B480BA97746A39E1"... ok (0s 129ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:40.126117] Synchronizing files with the container "4063DFF510AB4914B480BA97746A39E1"... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:40.418391] Deleting files... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:40.563535] Deleting files... ok (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:40.563677] Writing files... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:40.563901] Writing 3 items (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:40.732184] Writing files... ok (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:40.732216] Synchronizing files with the container "4063DFF510AB4914B480BA97746A39E1"... ok (0s 606ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:40.732501] added files: [] (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:40.732522] modified files: [] (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:40.732524] deleted files: [] (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:40.732601] 0 modified or added files are scheduled for deploy based on delta detection (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:40.732796] 0 deleted files are scheduled for undeploy based on delta detection (filtered by undeploy allowlist) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:40.732861] 0 files are scheduled for deploy based on explicit specification (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:40.732871] 0 files are scheduled for undeploy based on explicit specification (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:40.732916] Deploying to the container "4063DFF510AB4914B480BA97746A39E1"... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.014181] Starting make in the container "4063DFF510AB4914B480BA97746A39E1" with 0 files to deploy, 0 files to undeploy... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.014260] Disabling table replication for the container schema "4063DFF510AB4914B480BA97746A39E1"... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.014357] Disabling table replication for the container schema "4063DFF510AB4914B480BA97746A39E1"... ok (0s 10ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.014370] Migrating libraries... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.014824] Migrating libraries... ok (0s 16ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.014875] Making... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.014930] Preparing... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.014975] Preparing... ok (0s 0ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.015036] Preparing the make transaction... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.015462] Preparing the make transaction... ok (0s 11ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.015516] Calculating dependencies... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.015573] Expanding... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.015622] Expanding... ok (0s 6ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.015676] Precompiling... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.015720] Precompiling... ok (0s 0ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.015763] Merging... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.015810] Merging... ok (0s 0ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.015867] Calculating dependencies... ok (0s 6ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.015931] No make necessary (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.015985] Making... ok (0s 47ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.016032] Enabling table replication for the container schema "4063DFF510AB4914B480BA97746A39E1"... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.016080] Enabling table replication for the container schema "4063DFF510AB4914B480BA97746A39E1"... ok (0s 9ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.016121] Starting make in the container "4063DFF510AB4914B480BA97746A39E1" with 0 files to deploy, 0 files to undeploy... ok (0s 89ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.016432] Deploying to the container "4063DFF510AB4914B480BA97746A39E1"... ok (0s 284ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.017081] No default-access-role handling needed; global role "4063DFF510AB4914B480BA97746A39E1::access_role" will not be adapted (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.017196] Unlocking the container "4063DFF510AB4914B480BA97746A39E1"... (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.018189] Unlocking the container "4063DFF510AB4914B480BA97746A39E1"... ok (0s 1ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.018200] Deployment to container 4063DFF510AB4914B480BA97746A39E1 done [Deployment ID: none]. (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.018966] Deployment ended at 2026-08-14 08:08:41 (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.019405] (1s 886ms) (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.032806] npm notice (STDERR, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.032830] npm notice New major version of npm available! 11.12.1 -> 12.0.2 (STDERR, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.032833] npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2 (STDERR, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.032841] npm notice To update run: npm install -g npm@12.0.2 (STDERR, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.032844] npm notice (STDERR, APP/TASK/deploy)#
+#2026 08 14 08:08:41.900#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29107#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.102906] Exit status 0 (STDOUT, APP/TASK/deploy)#
+#2026 08 14 08:08:52.164#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29113#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.976561] Cell 684caff8-89cd-492b-be01-b3d0835f1763 stopping instance f28dff71-9e6f-4c07-a5b9-1180d5616327 (STDOUT, CELL)#
+#2026 08 14 08:08:52.164#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29113#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:41.976618] Cell 684caff8-89cd-492b-be01-b3d0835f1763 destroying container for instance f28dff71-9e6f-4c07-a5b9-1180d5616327 (STDOUT, CELL)#
+#2026 08 14 08:08:52.164#Z#DEBUG#2a9679fe-97b7-11f1-91c3-eeee0a9f1a4c.loyalty-rewards-db-deployer#flowable-async-job-executor-thread-29113#
+[PollExecuteTaskStatusExecution] 14abe4c7-062a-499e-b7d4-4f73c68d95af [2026-08-14T08:08:45.246358] Cell 684caff8-89cd-492b-be01-b3d0835f1763 successfully destroyed container for instance f28dff71-9e6f-4c07-a5b9-1180d5616327 (STDOUT, CELL)#

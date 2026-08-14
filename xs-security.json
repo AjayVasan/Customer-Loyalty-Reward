@@ -1,0 +1,59 @@
+{
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.admin",
+      "description": "admin"
+    },
+    {
+      "name": "$XSAPPNAME.staff",
+      "description": "staff"
+    },
+    {
+      "name": "$XSAPPNAME.customer",
+      "description": "customer"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "email",
+      "description": "email",
+      "valueType": "s",
+      "valueRequired": false
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "admin",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.admin"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "staff",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.staff"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "customer",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.customer"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "userattributes",
+      "description": "generated",
+      "default-role-name": "Attributes of a User",
+      "scope-references": [],
+      "attribute-references": [
+        "email"
+      ]
+    }
+  ]
+}

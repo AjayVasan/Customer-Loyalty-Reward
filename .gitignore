@@ -1,0 +1,7 @@
+node_modules/
+mta_archives/
+app/*/dist/
+app/*/webapp/Component-preload.js
+gen/
+.triangle/
+*.mtar

@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.0"
+metadata:
+  name: tierthresholdsmanagement
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: ui5-task-zipper
+      afterTask: generateVersionInfo
+      configuration:
+        archiveName: tier-thresholds-management
+        relativePaths: true
+        additionalFiles:
+          - xs-app.json
+    - name: ui5-task-zipper
+      afterTask: generateCachebusterInfo
+      configuration:
+        archiveName: tierthresholdsmanagement
+        relativePaths: true
+        additionalFiles:
+          - xs-app.json
+resources:
+  configuration:
+    propertiesFileSourceEncoding: UTF-8

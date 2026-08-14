@@ -1,0 +1,7 @@
+.sapUiSizeCompact .kpiStrip {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.kpiStrip .sapMGT {
+  min-width: 11rem;
+}

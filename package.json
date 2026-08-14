@@ -1,0 +1,132 @@
+{
+  "name": "loyalty-rewards",
+  "version": "1.0.0",
+  "description": "Retail Omni-Channel Customer Loyalty & Rewards Management",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@cap-js/change-tracking": "^2",
+    "@cap-js/hana": "^2",
+    "@sap/cds": "^9",
+    "@sap/xssec": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2.4",
+    "@sap/cds-dk": "^9",
+    "@sap/ux-ui5-tooling": "^1.30.0",
+    "cds-plugin-ui5": "^0.17.0",
+    "rimraf": "^5.0.5",
+    "mbt": "^1.2.49"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch": "cds watch",
+    "test": "NODE_ENV=test node --test 'test/**/*.test.js'",
+    "watch-customers-management": "cds watch --open customersmanagement/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-transactions-management": "cds watch --open transactionsmanagement/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-reward-policies": "cds watch --open rewardpolicies/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-tier-thresholds-management": "cds watch --open tierthresholdsmanagement/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "undeploy": "cf undeploy loyalty-rewards --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sql"
+      },
+      "html5-repo": true,
+      "[development]": {
+        "db": {
+          "kind": "sqlite",
+          "credentials": {
+            "url": "db.sqlite"
+          }
+        },
+        "auth": {
+          "kind": "dummy",
+          "users": {
+            "alice": {
+              "password": "pass",
+              "roles": [
+                "customer"
+              ],
+              "attr": {
+                "email": "alice@example.com"
+              }
+            },
+            "bob": {
+              "password": "pass",
+              "roles": [
+                "staff"
+              ]
+            },
+            "carol": {
+              "password": "pass",
+              "roles": [
+                "admin"
+              ]
+            }
+          }
+        }
+      },
+      "[test]": {
+        "db": {
+          "kind": "sqlite",
+          "credentials": {
+            "url": ":memory:"
+          }
+        },
+        "auth": {
+          "kind": "dummy",
+          "users": {
+            "alice": {
+              "password": "",
+              "roles": [
+                "customer"
+              ],
+              "attr": {
+                "email": "alice@example.com"
+              }
+            },
+            "bob": {
+              "password": "",
+              "roles": [
+                "staff"
+              ]
+            },
+            "carol": {
+              "password": "",
+              "roles": [
+                "admin"
+              ]
+            }
+          }
+        }
+      },
+      "[production]": {
+        "db": {
+          "kind": "hana"
+        },
+        "auth": {
+          "kind": "xsuaa"
+        }
+      }
+    }
+  },
+  "allowScripts": {
+    "better-sqlite3@11.10.0": true
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/customers-management",
+    "app/transactions-management",
+    "app/reward-policies",
+    "app/tier-thresholds-management"
+  ]
+}

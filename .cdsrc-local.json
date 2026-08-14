@@ -1,0 +1,24 @@
+{
+  "auth": {
+    "strategy": "dummy",
+    "users": {
+      "user": {
+        "password": "password",
+        "roles": ["admin"]
+      }
+    }
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "database": ":memory:"
+        }
+      },
+      "auth": {
+        "kind": "dummy"
+      }
+    }
+  }
+}

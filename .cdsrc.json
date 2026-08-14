@@ -1,0 +1,13 @@
+{
+  "build": {
+    "target": "gen",
+    "tasks": [
+      { "for": "hana", "src": "db" },
+      { "for": "nodejs", "src": "srv" },
+      { "for": "ui5", "src": "app/customers-management" },
+      { "for": "ui5", "src": "app/transactions-management" },
+      { "for": "ui5", "src": "app/reward-policies" },
+      { "for": "ui5", "src": "app/tier-thresholds-management" }
+    ]
+  }
+}
