@@ -18,31 +18,11 @@
         </subHeader>
 
         <VBox class="sapUiMediumMargin">
-          <!-- KPI strip: staff + admin only -->
-          <Panel headerText="{i18n>kpiTitle}" visible="{= ${ui>/isAdmin} || ${ui>/isStaff} }">
-            <HBox class="kpiStrip">
-              <GenericTile header="{i18n>kpiCustomers}">
-                <tileContent><TileContent><content><NumericContent value="{ui>/kpis/customers}" /></content></TileContent></tileContent>
-              </GenericTile>
-              <GenericTile header="{i18n>kpiPointsIssued}">
-                <tileContent><TileContent><content><NumericContent value="{ui>/kpis/pointsIssued}" /></content></TileContent></tileContent>
-              </GenericTile>
-              <GenericTile header="{i18n>kpiPointsRedeemed}">
-                <tileContent><TileContent><content><NumericContent value="{ui>/kpis/pointsRedeemed}" withMargin="false" /></content></TileContent></tileContent>
-              </GenericTile>
-              <GenericTile header="{i18n>kpiTransactions}">
-                <tileContent><TileContent><content><NumericContent value="{ui>/kpis/transactions}" /></content></TileContent></tileContent>
-              </GenericTile>
-              <GenericTile header="{i18n>kpiRedemptions}">
-                <tileContent><TileContent><content><NumericContent value="{ui>/kpis/redemptions}" /></content></TileContent></tileContent>
-              </GenericTile>
-            </HBox>
-          </Panel>
 
           <IconTabBar id="roleTabs" expandable="false">
             <items>
               <!-- ================= CUSTOMER: own account only ================= -->
-              <IconTabFilter text="{i18n>tabCustomer}" icon="sap-icon://person-placeholder" visible="{ui>/isCustomer}">
+              <IconTabFilter id="tabCustomer" text="{i18n>tabCustomer}" icon="sap-icon://person-placeholder" visible="{ui>/isCustomer}">
                 <VBox class="sapUiSmallMargin">
                   <ObjectHeader
                     title="{ui>/me/name}"
@@ -105,8 +85,18 @@
               </IconTabFilter>
 
               <!-- ================= STAFF: find / add customer, record purchase ================= -->
-              <IconTabFilter text="{i18n>tabStaff}" icon="sap-icon://employee" visible="{ui>/isStaff}">
+              <IconTabFilter id="tabStaff" text="{i18n>tabStaff}" icon="sap-icon://employee" visible="{ui>/isStaff}">
                 <VBox class="sapUiSmallMargin">
+                  <Panel headerText="{i18n>kpiTitle}">
+                    <HBox class="kpiStrip">
+                      <GenericTile header="{i18n>kpiCustomers}"><tileContent><TileContent><content><NumericContent value="{ui>/kpiStaff/customers}" /></content></TileContent></tileContent></GenericTile>
+                      <GenericTile header="{i18n>kpiTransactions}"><tileContent><TileContent><content><NumericContent value="{ui>/kpiStaff/purchases}" /></content></TileContent></tileContent></GenericTile>
+                      <GenericTile header="{i18n>kpiPointsIssued}"><tileContent><TileContent><content><NumericContent value="{ui>/kpiStaff/pointsIssued}" /></content></TileContent></tileContent></GenericTile>
+                      <GenericTile header="{i18n>kpiIssuedOnline}"><tileContent><TileContent><content><NumericContent value="{ui>/kpiStaff/online}" /></content></TileContent></tileContent></GenericTile>
+                      <GenericTile header="{i18n>kpiIssuedStore}"><tileContent><TileContent><content><NumericContent value="{ui>/kpiStaff/store}" withMargin="false" /></content></TileContent></tileContent></GenericTile>
+                    </HBox>
+                  </Panel>
+
                   <Panel headerText="{i18n>staffFindTitle}">
                     <Text text="{i18n>staffFindHint}" class="sapUiSmallMarginBottom" />
                     <HBox renderType="Bare" alignItems="Center">
@@ -127,11 +117,10 @@
                   <Panel headerText="{i18n>purchaseTitle}" expandable="true" expanded="true">
                     <Text text="{i18n>purchaseSubtitle}" class="sapUiSmallMarginBottom" />
                     <form:SimpleForm editable="true" layout="ColumnLayout" columns="4">
-                      <Label text="{i18n>purchaseCustomer}" />
-                      <VBox renderType="Bare">
-                        <Text text="{= ${ui>/staffCustomer} ? ${ui>/staffCustomer/name} + ' (' + ${ui>/staffCustomer/email} + ')' : '' }" visible="{= !!${ui>/staffCustomer} }" />
-                        <Text text="{i18n>noCustomerSelected}" visible="{= !${ui>/staffCustomer} }" class="sapUiTinyMarginTop" />
-                      </VBox>
+                      <Label text="{i18n>purchaseCustomer}" visible="{= !!${ui>/staffCustomer} }" />
+                      <Text text="{= ${ui>/staffCustomer} ? ${ui>/staffCustomer/name} + ' (' + ${ui>/staffCustomer/email} + ')' : '' }" visible="{= !!${ui>/staffCustomer} }" />
+                      <Label text="{i18n>purchaseCustomer}" visible="{= !${ui>/staffCustomer} }" />
+                      <Text text="{i18n>noCustomerSelected}" visible="{= !${ui>/staffCustomer} }" />
                       <Label text="{i18n>purchaseChannel}" />
                       <Select id="purchaseChannel" change=".onRateHintRefresh">
                         <core:Item key="Online" text="Online" />
@@ -162,8 +151,19 @@
               </IconTabFilter>
 
               <!-- ================= ADMIN: gated lookup + policies + thresholds ================= -->
-              <IconTabFilter text="{i18n>tabAdmin}" icon="sap-icon://shield" visible="{ui>/isAdmin}">
+              <IconTabFilter id="tabAdmin" text="{i18n>tabAdmin}" icon="sap-icon://shield" visible="{ui>/isAdmin}">
                 <VBox class="sapUiSmallMargin">
+                  <Panel headerText="{i18n>kpiTitle}">
+                    <HBox class="kpiStrip">
+                      <GenericTile header="{i18n>kpiCustomers}"><tileContent><TileContent><content><NumericContent value="{ui>/kpisAdmin/customers}" /></content></TileContent></tileContent></GenericTile>
+                      <GenericTile header="{i18n>kpiIssuedOnline}"><tileContent><TileContent><content><NumericContent value="{ui>/kpisAdmin/online}" /></content></TileContent></tileContent></GenericTile>
+                      <GenericTile header="{i18n>kpiIssuedStore}"><tileContent><TileContent><content><NumericContent value="{ui>/kpisAdmin/store}" /></content></TileContent></tileContent></GenericTile>
+                      <GenericTile header="{i18n>kpiPointsRedeemed}"><tileContent><TileContent><content><NumericContent value="{ui>/kpisAdmin/pointsRedeemed}" /></content></TileContent></tileContent></GenericTile>
+                      <GenericTile header="{i18n>kpiTransactions}"><tileContent><TileContent><content><NumericContent value="{ui>/kpisAdmin/purchases}" /></content></TileContent></tileContent></GenericTile>
+                      <GenericTile header="{i18n>kpiRedemptions}"><tileContent><TileContent><content><NumericContent value="{ui>/kpisAdmin/redemptions}" withMargin="false" /></content></TileContent></tileContent></GenericTile>
+                    </HBox>
+                  </Panel>
+
                   <Panel headerText="{i18n>adminLookupTitle}">
                     <Text text="{i18n>adminLookupHint}" class="sapUiSmallMarginBottom" />
                     <HBox renderType="Bare" alignItems="Center">
@@ -240,17 +240,6 @@
                       </items>
                     </Table>
 
-                    <form:SimpleForm editable="true" title="{i18n>policyAddTitle}" layout="ColumnLayout" columns="4" class="sapUiMediumMarginTop">
-                      <Label text="{i18n>policyChannel}" />
-                      <Select id="newPolicyChannel">
-                        <core:Item key="Online" text="Online" />
-                        <core:Item key="Store" text="Store" />
-                      </Select>
-                      <Label text="{i18n>policyRate}" />
-                      <Input id="newPolicyRate" type="Number" placeholder="0.05" width="160px" />
-                      <Label />
-                      <Button text="{i18n>policyAddBtn}" icon="sap-icon://add" press=".onPolicyAdd" />
-                    </form:SimpleForm>
 
                     <Table id="thresholdTable" headerText="{i18n>thresholdTitle}" class="sapUiMediumMarginTop" items="{ path: '/TierThresholds' }">
                       <columns>

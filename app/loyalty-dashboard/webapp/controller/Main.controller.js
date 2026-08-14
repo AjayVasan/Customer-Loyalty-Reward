@@ -17,7 +17,8 @@ sap.ui.define(
           isAdmin: false,
           isStaff: false,
           isCustomer: false,
-          kpis: { customers: '–', pointsIssued: '–', pointsRedeemed: '–', transactions: '–', redemptions: '–' },
+          kpiStaff: { customers: '–', purchases: '–', pointsIssued: '–', online: '–', store: '–' },
+          kpisAdmin: { customers: '–', online: '–', store: '–', pointsRedeemed: '–', purchases: '–', redemptions: '–' },
           // customer tab: the signed-in user's own record (auto-created on first login)
           me: { customerID: '', name: '', email: '', totalPoints: 0, lifetimePoints: 0, tier: '' },
           myTxns: [],
@@ -54,9 +55,16 @@ sap.ui.define(
         ui.setProperty('/isStaff', !!user.isStaff)
         ui.setProperty('/isCustomer', !!user.isCustomer)
 
-        const polRes = await this._fetch('RewardPolicies?$select=policyID,channel,pointsPerCurrencyUnit')
-        ui.setProperty('/policies', polRes.value || [])
+        try {
+          const polRes = await this._fetch('RewardPolicies?$select=policyID,channel,pointsPerCurrencyUnit')
+          ui.setProperty('/policies', polRes.value || [])
+        } catch (e) { /* role without policy read access: rate hints degrade to 0 */ }
         this.onRateHintRefresh()
+
+        // default tab follows the strongest role: admin > staff > customer
+        const tabKey = user.isAdmin ? 'tabAdmin' : (user.isStaff ? 'tabStaff' : 'tabCustomer')
+        const tab = this.byId(tabKey)
+        if (tab) this.byId('roleTabs').setSelectedKey(tab.getId())
 
         if (user.isAdmin || user.isStaff) this.refreshKpis().catch(() => {})
 
@@ -110,21 +118,36 @@ sap.ui.define(
       },
 
       refreshKpis: async function () {
-        const k = this.getView().getModel('ui')
+        const ui = this.getView().getModel('ui')
+        const isAdmin = ui.getProperty('/isAdmin')
         const count = async (set) => String((await this._fetch(set + '?$count=true'))['@odata.count'] ?? 0)
-        const agg = async (set, prop) => {
-          const j = await this._fetch(set + '?$apply=' + encodeURIComponent('aggregate(' + prop + ' with sum as total)'))
-          return String((j.value && j.value[0] && j.value[0].total) || 0)
+        // per-channel points issued via $apply groupby (CAP ignores $filter+$apply combos)
+        const byChannel = async () => {
+          const j = await this._fetch('Transactions?$apply=' +
+            encodeURIComponent('groupby((channel),aggregate(pointsEarned with sum as total))'))
+          const map = { Online: 0, Store: 0 }
+          ;(j.value || []).forEach((r) => { map[r.channel] = r.total || 0 })
+          return map
         }
-        const [c, t, r, pi, pr] = await Promise.all([
-          count('Customers'), count('Transactions'), count('Redemptions'),
-          agg('Transactions', 'pointsEarned'), agg('Redemptions', 'pointsUsed')
-        ])
-        k.setProperty('/kpis/customers', c)
-        k.setProperty('/kpis/transactions', t)
-        k.setProperty('/kpis/redemptions', r)
-        k.setProperty('/kpis/pointsIssued', pi)
-        k.setProperty('/kpis/pointsRedeemed', pr)
+        if (isAdmin) {
+          const [cust, tx, red, chan, redAgg] = await Promise.all([
+            count('Customers'), count('Transactions'), count('Redemptions'), byChannel(),
+            this._fetch('Redemptions?$apply=' + encodeURIComponent('aggregate(pointsUsed with sum as total)'))
+          ])
+          const redeemed = String((redAgg.value && redAgg.value[0] && redAgg.value[0].total) || 0)
+          ui.setProperty('/kpisAdmin', {
+            customers: cust, purchases: tx, redemptions: red,
+            online: String(chan.Online || 0), store: String(chan.Store || 0), pointsRedeemed: redeemed
+          })
+        } else {
+          // staff: Customers + Transactions only (no Redemptions read access)
+          const [cust, tx, chan] = await Promise.all([count('Customers'), count('Transactions'), byChannel()])
+          ui.setProperty('/kpiStaff', {
+            customers: cust, purchases: tx,
+            online: String(chan.Online || 0), store: String(chan.Store || 0),
+            pointsIssued: String((chan.Online || 0) + (chan.Store || 0))
+          })
+        }
       },
 
       // ---------- customer: redeem ----------
@@ -337,28 +360,6 @@ sap.ui.define(
           this.getView().getModel('ui').setProperty('/policies', j.value || [])
           this.onRateHintRefresh()
         } catch (err) {
-          this._error(this._i18n('errRequest'), err)
-        }
-      },
-
-      onPolicyAdd: async function () {
-        const channel = this.byId('newPolicyChannel').getSelectedKey()
-        const rate = parseFloat(this.byId('newPolicyRate').getValue())
-        if (!channel || !(rate > 0)) return MessageToast.show(this._i18n('errRateInvalid'))
-        const model = this.getView().getModel()
-        let ctx
-        try {
-          const list = model.bindList('/RewardPolicies')
-          ctx = list.create({ channel: channel, pointsPerCurrencyUnit: rate })
-          await this._send(ctx)
-          MessageToast.show(this._i18n('policyAdded').replace('{0}', channel))
-          this.byId('newPolicyRate').setValue('')
-          this.byId('policyTable').getBinding('items').refresh()
-          const j = await this._fetch('RewardPolicies?$select=policyID,channel,pointsPerCurrencyUnit')
-          this.getView().getModel('ui').setProperty('/policies', j.value || [])
-          this.onRateHintRefresh()
-        } catch (err) {
-          if (ctx && ctx.delete) { try { ctx.delete() } catch (e) { /* transient already gone */ } }
           this._error(this._i18n('errRequest'), err)
         }
       },

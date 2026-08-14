@@ -42,13 +42,13 @@ annotate LoyaltyService.Redemptions with @(restrict: [
 ]);
 
 annotate LoyaltyService.RewardPolicies with @(restrict: [
-  { grant: '*', to: 'admin' }
+  { grant: '*', to: 'admin' },
+  { grant: 'READ', to: 'staff' }
 ]);
 
 annotate LoyaltyService.TierThresholds with @(restrict: [
   { grant: '*', to: 'admin' }
 ]);
-
 annotate LoyaltyService.Customers {
   totalPoints    @changelog;
   lifetimePoints @changelog;
