@@ -35,6 +35,18 @@ module.exports = (srv) => {
       return req.reject(403, 'Customers may only register with their own email address')
     }
   })
+  // role guard: customers may only register purchases for their own account
+  // (staff/admin may record for anyone)
+  srv.before('CREATE', 'Transactions', async (req) => {
+    const u = req.user
+    if (u.is && (u.is('admin') || u.is('staff'))) return
+    const ownEmail = String(u.email || u.id || '').toLowerCase()
+    const cust = await srv.run(SELECT.one.from(srv.entities.Customers)
+      .where({ customerID: req.data.customerID_customerID }))
+    if (!cust || String(cust.email || '').toLowerCase() !== ownEmail) {
+      return req.reject(403, 'Customers may only register purchases for their own account')
+    }
+  })
   cds.on('served', async () => {
     await policyCache.load(srv)
   })

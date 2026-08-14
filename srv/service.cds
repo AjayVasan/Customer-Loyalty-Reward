@@ -33,7 +33,10 @@ annotate LoyaltyService.Customers with @(restrict: [
 annotate LoyaltyService.Transactions with @(restrict: [
   { grant: ['READ', 'CREATE'], to: 'admin' },
   { grant: ['READ', 'CREATE'], to: 'staff' },
-  { grant: 'READ', to: 'customer', where: 'customerID.email = $user.email' }
+  { grant: 'READ', to: 'customer', where: 'customerID.email = $user.email' },
+  // customers may register purchases for their OWN account only
+  // (enforced in srv/service.js — $user where-clauses don't apply to CREATE)
+  { grant: 'CREATE', to: 'customer' }
 ]);
 
 annotate LoyaltyService.Redemptions with @(restrict: [

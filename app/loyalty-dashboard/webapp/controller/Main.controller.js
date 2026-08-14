@@ -69,6 +69,7 @@ sap.ui.define(
         if (user.isAdmin || user.isStaff) this.refreshKpis().catch(() => {})
 
         if (user.isCustomer) await this._onboardSelf(user)
+        this.onCustPurchaseHint()
       },
 
       // find the signed-in user's customer record by email; create it on first login
@@ -110,7 +111,7 @@ sap.ui.define(
         const ui = this.getView().getModel('ui')
         const filter = encodeURIComponent("customerID eq " + id)
         const [txns, reds] = await Promise.all([
-          this._fetch('Transactions?$select=txnDate,channel,amount,pointsEarned&$filter=' + filter + '&$orderby=' + encodeURIComponent('txnDate desc')),
+      this._fetch('Transactions?$select=txnDate,channel,amount,pointsApplied,pointsEarned&$filter=' + filter + '&$orderby=' + encodeURIComponent('txnDate desc')),
           this._fetch('Redemptions?$select=redeemDate,pointsUsed,remarks&$filter=' + filter + '&$orderby=' + encodeURIComponent('redeemDate desc'))
         ])
         ui.setProperty('/myTxns', txns.value || [])
@@ -215,7 +216,7 @@ sap.ui.define(
         }
         try {
           const res = await this._fetch(
-            'Customers?$select=customerID,name,email,tier&$filter=' +
+            'Customers?$select=customerID,name,email,totalPoints,tier&$filter=' +
             encodeURIComponent("email eq '" + email.replace(/'/g, "''") + "'"))
           const cust = (res.value || [])[0]
           if (!cust) {
@@ -252,7 +253,8 @@ sap.ui.define(
             customerID: ctx.getProperty('customerID'),
             name: ctx.getProperty('name'),
             email: ctx.getProperty('email'),
-            tier: ctx.getProperty('tier')
+            tier: ctx.getProperty('tier'),
+            totalPoints: ctx.getProperty('totalPoints') || 0
           })
           this.byId('staffSearchEmail').setValue(email)
           this.refreshKpis().catch(() => {})
@@ -264,22 +266,49 @@ sap.ui.define(
 
       // ---------- staff: record purchase ----------
 
-      onRateHintRefresh: function () {
-        const ui = this.getView().getModel('ui')
-        const channel = this.byId('purchaseChannel') ? this.byId('purchaseChannel').getSelectedKey() : 'Online'
-        const amount = parseFloat(this.byId('purchaseAmount') ? this.byId('purchaseAmount').getValue() : '0')
-        const pol = (ui.getProperty('/policies') || []).find((p) => p.channel === channel)
+      // ---------- purchase math (staff + customer forms share this) ----------
+
+      // reward-point part-payment value (₹ per point) — mirrors
+      // srv/lib/point-value.js; the backend recomputes authoritatively.
+      _PURCHASE_POINT_VALUE: 0.5,
+
+      _purchaseHint: function (priceIn, pointsIn, channel, balance) {
+        const pol = (this.getView().getModel('ui').getProperty('/policies') || []).find((p) => p.channel === channel)
         const rate = pol ? parseFloat(pol.pointsPerCurrencyUnit) : 0
-        const pts = Math.floor((amount || 0) * (rate || 0))
-        this.byId('rateHint').setText('₹1 = ' + rate + ' pts (' + channel + ') — this purchase: ' + pts + ' pts')
+        const price = Math.floor((parseFloat(priceIn) || 0) * 2) / 2 // ₹0.50 denominations
+        const maxPts = Math.min(balance || 0, Math.floor(price / this._PURCHASE_POINT_VALUE))
+        let pts = Math.floor(parseFloat(pointsIn) || 0)
+        if (pts < 0) pts = 0
+        if (pts > maxPts) pts = maxPts
+        const covered = pts * this._PURCHASE_POINT_VALUE
+        const payable = price - covered
+        const earned = Math.floor(payable * rate)
+        const parts = ['₹1 = ' + rate + ' pts (' + channel + ')', 'price ₹' + price.toFixed(2)]
+        if (pts > 0) parts.push(pts + ' pts cover ₹' + covered.toFixed(2))
+        parts.push('payable ₹' + payable.toFixed(2), '+' + earned + ' pts')
+        return { price: price, points: pts, payable: payable, earned: earned, text: parts.join(' — ') }
+      },
+
+      onRateHintRefresh: function () {
+        if (!this.byId('rateHint')) return
+        const cust = this.getView().getModel('ui').getProperty('/staffCustomer')
+        const channel = this.byId('purchaseChannel') ? this.byId('purchaseChannel').getSelectedKey() : 'Online'
+        const h = this._purchaseHint(
+          this.byId('purchasePrice') ? this.byId('purchasePrice').getValue() : '0',
+          this.byId('purchasePoints') ? this.byId('purchasePoints').getValue() : '0',
+          channel, cust ? cust.totalPoints : 0)
+        this.byId('rateHint').setText(h.text)
+        // live-normalize the points field to the usable maximum
+        if (this.byId('purchasePoints')) this.byId('purchasePoints').setValue(String(h.points))
       },
 
       onRecordPurchase: async function () {
         const ui = this.getView().getModel('ui')
         const cust = ui.getProperty('/staffCustomer')
         const channel = this.byId('purchaseChannel').getSelectedKey()
-        const amount = parseFloat(this.byId('purchaseAmount').getValue())
-        if (!cust || !channel || !(amount > 0)) {
+        const price = parseFloat(this.byId('purchasePrice').getValue())
+        const points = Math.floor(parseFloat(this.byId('purchasePoints').getValue() || '0') || 0)
+        if (!cust || !channel || !(price > 0)) {
           return MessageToast.show(this._i18n('errFillAll'))
         }
         const model = this.getView().getModel()
@@ -289,14 +318,74 @@ sap.ui.define(
           ctx = list.create({
             customerID_customerID: cust.customerID,
             channel: channel,
-            amount: amount
+            price: price,
+            pointsApplied: points
           })
           await this._send(ctx)
           const pts = ctx.getProperty('pointsEarned')
           MessageToast.show(this._i18n('purchaseSuccess').replace('{0}', pts).replace('{1}', cust.name))
-          this.byId('purchaseAmount').setValue('')
+          this.byId('purchasePrice').setValue('')
+          this.byId('purchasePoints').setValue('')
+          // refresh the searched customer so the next form's points cap is correct
+          try {
+            const res = await this._fetch(
+              'Customers?$select=customerID,name,email,totalPoints,tier&$filter=' +
+              encodeURIComponent('customerID eq ' + cust.customerID))
+            const fresh = (res.value || [])[0]
+            if (fresh) ui.setProperty('/staffCustomer', fresh)
+          } catch (e) { /* balance refresh is best-effort */ }
           this.onRateHintRefresh()
           this.refreshKpis().catch(() => {})
+        } catch (err) {
+          if (ctx && ctx.delete) { try { ctx.delete() } catch (e) { /* transient already gone */ } }
+          this._error(this._i18n('errRequest'), err)
+        }
+      },
+
+      // ---------- customer: register own purchase (points optional) ----------
+
+      onCustPurchaseHint: function () {
+        if (!this.byId('custRateHint')) return
+        const me = this.getView().getModel('ui').getProperty('/me')
+        const channel = this.byId('custChannel') ? this.byId('custChannel').getSelectedKey() : 'Online'
+        const h = this._purchaseHint(
+          this.byId('custPrice') ? this.byId('custPrice').getValue() : '0',
+          this.byId('custPoints') ? this.byId('custPoints').getValue() : '0',
+          channel, me ? me.totalPoints : 0)
+        this.byId('custRateHint').setText(h.text)
+        if (this.byId('custPoints')) this.byId('custPoints').setValue(String(h.points))
+      },
+
+      onCustomerPurchase: async function () {
+        const ui = this.getView().getModel('ui')
+        const me = ui.getProperty('/me')
+        const channel = this.byId('custChannel').getSelectedKey()
+        const price = parseFloat(this.byId('custPrice').getValue())
+        const points = Math.floor(parseFloat(this.byId('custPoints').getValue() || '0') || 0)
+        if (!me.customerID || !channel || !(price > 0)) {
+          return MessageToast.show(this._i18n('errFillAll'))
+        }
+        const model = this.getView().getModel()
+        let ctx
+        try {
+          const list = model.bindList('/Transactions')
+          ctx = list.create({
+            customerID_customerID: me.customerID,
+            channel: channel,
+            price: price,
+            pointsApplied: points
+          })
+          await this._send(ctx)
+          const pts = ctx.getProperty('pointsEarned')
+          MessageToast.show(this._i18n('purchaseSuccess').replace('{0}', pts).replace('{1}', me.name))
+          this.byId('custPrice').setValue('')
+          this.byId('custPoints').setValue('')
+          await this._refreshMe()
+          await this._loadMyHistory(me.customerID)
+          this.onCustPurchaseHint()
+          if (ui.getProperty('/isAdmin') || ui.getProperty('/isStaff')) {
+            this.refreshKpis().catch(() => {})
+          }
         } catch (err) {
           if (ctx && ctx.delete) { try { ctx.delete() } catch (e) { /* transient already gone */ } }
           this._error(this._i18n('errRequest'), err)

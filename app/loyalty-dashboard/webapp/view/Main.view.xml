@@ -34,6 +34,21 @@
                       <ObjectStatus text="{i18n>custLifetimePoints}: {ui>/me/lifetimePoints}" state="None" />
                     </statuses>
                   </ObjectHeader>
+                  <form:SimpleForm editable="true" title="Register a purchase" layout="ColumnLayout" columns="4">
+                    <Label text="Channel" />
+                    <Select id="custChannel" change=".onCustPurchaseHint">
+                      <core:Item key="Online" text="Online" />
+                      <core:Item key="Store" text="Store" />
+                    </Select>
+                    <Label text="Product price (₹)" />
+                    <Input id="custPrice" type="Number" placeholder="0.00" liveChange=".onCustPurchaseHint" />
+                    <Label text="Points to use (optional)" />
+                    <Input id="custPoints" type="Number" placeholder="0" liveChange=".onCustPurchaseHint" />
+                    <Label text="Earn rate" labelFor="custRateHint" />
+                    <Text id="custRateHint" text="" />
+                    <Label />
+                    <Button text="Register purchase" type="Emphasized" icon="sap-icon://add-activity-2" press=".onCustomerPurchase" />
+                  </form:SimpleForm>
 
                   <form:SimpleForm editable="true" title="{i18n>redeemTitle}" layout="ColumnLayout" columns="4">
                     <Label text="{i18n>redeemPoints}" />
@@ -50,6 +65,7 @@
                       <Column><Text text="Date" /></Column>
                       <Column><Text text="Channel" /></Column>
                       <Column hAlign="End"><Text text="Amount (₹)" /></Column>
+                      <Column hAlign="End"><Text text="Points used" /></Column>
                       <Column hAlign="End"><Text text="Points" /></Column>
                     </columns>
                     <items>
@@ -58,6 +74,7 @@
                           <Text text="{ui>txnDate}" />
                           <Text text="{ui>channel}" />
                           <Text text="{ui>amount}" />
+                          <ObjectNumber number="{ui>pointsApplied}" emphasized="false" state="Error" />
                           <ObjectNumber number="{ui>pointsEarned}" emphasized="false" />
                         </cells>
                       </ColumnListItem>
@@ -126,9 +143,11 @@
                         <core:Item key="Online" text="Online" />
                         <core:Item key="Store" text="Store" />
                       </Select>
-                      <Label text="{i18n>purchaseAmount}" />
-                      <Input id="purchaseAmount" type="Number" placeholder="0.00" liveChange=".onRateHintRefresh" />
-                      <Label text="{i18n>purchaseRateHint}" labelFor="rateHint" />
+                      <Label text="Product price (₹)" />
+                      <Input id="purchasePrice" type="Number" placeholder="0.00" liveChange=".onRateHintRefresh" />
+                      <Label text="Points to use (optional)" />
+                      <Input id="purchasePoints" type="Number" placeholder="0" liveChange=".onRateHintRefresh" />
+                      <Label text="Earn rate" labelFor="rateHint" />
                       <Text id="rateHint" text="" />
                       <Label />
                       <Button text="{i18n>purchaseSubmit}" type="Emphasized" icon="sap-icon://add-activity-2" press=".onRecordPurchase" />
