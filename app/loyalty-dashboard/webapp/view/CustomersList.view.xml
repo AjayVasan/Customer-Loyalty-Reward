@@ -1,0 +1,60 @@
+<mvc:View
+  controllerName="loyaltydashboard.controller.CustomersList"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  displayBlock="true">
+  <Page
+    id="customersListPage"
+    title="{i18n>listTitle}"
+    showNavButton="true"
+    navButtonPress=".onNavBack">
+    <subHeader>
+      <Toolbar>
+        <SearchField
+          id="listSearch"
+          width="360px"
+          liveChange=".onSearch"
+          placeholder="{i18n>listSearchPlaceholder}" />
+        <ObjectStatus text="{i18n>listModeAdmin}" state="Success" visible="{ui>/adminMode}" />
+        <ObjectStatus text="{i18n>listModeStaff}" state="Information" visible="{= !${ui>/adminMode} }" />
+        </Toolbar>
+    </subHeader>
+
+    <Table
+      id="customerTable"
+      items="{ui>/customers}"
+      growing="true"
+      growingThreshold="20"
+      mode="None"
+      class="sapUiMediumMargin">
+      <columns>
+        <Column><Text text="{i18n>custName}" /></Column>
+        <Column><Text text="{i18n>custEmail}" /></Column>
+        <Column><Text text="{i18n>custTier}" /></Column>
+        <Column hAlign="End" visible="{ui>/adminMode}"><Text text="{i18n>custTotalPoints}" /></Column>
+        <Column hAlign="End" visible="{ui>/adminMode}"><Text text="{i18n>custLifetimePoints}" /></Column>
+      </columns>
+      <items>
+        <ColumnListItem type="{= ${ui>/adminMode} ? 'Active' : 'Inactive' }" press=".onRowPress">
+          <cells>
+            <Text text="{ui>name}" />
+            <Text text="{ui>email}" />
+            <ObjectStatus
+              text="{ui>tier}"
+              state="{= ${ui>tier} === 'Gold' ? 'Success' : (${ui>tier} === 'Silver' ? 'Information' : 'Warning') }" />
+            <ObjectNumber number="{ui>totalPoints}" unit="pts" emphasized="false" visible="{ui>/adminMode}" />
+            <Text text="{ui>lifetimePoints}" visible="{ui>/adminMode}" />
+          </cells>
+        </ColumnListItem>
+      </items>
+    </Table>
+
+    <footer>
+      <Toolbar>
+        <Text text="{i18n>listCountLabel}: {ui>/shown}" />
+        <ToolbarSpacer />
+        <Link text="{i18n>logout}" href="/logout" target="_top" />
+      </Toolbar>
+    </footer>
+  </Page>
+</mvc:View>

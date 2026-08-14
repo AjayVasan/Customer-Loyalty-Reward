@@ -25,7 +25,9 @@ service LoyaltyService @(requires: 'authenticated-user') {
 annotate LoyaltyService.Customers with @(restrict: [
   { grant: 'READ', to: 'admin' },
   { grant: 'READ', to: 'staff' },
-  { grant: 'READ', to: 'customer', where: 'email = $user.email' }
+  { grant: ['READ', 'CREATE'], to: 'customer', where: 'email = $user.email' },
+  { grant: 'CREATE', to: 'staff' },
+  { grant: 'CREATE', to: 'admin' }
 ]);
 
 annotate LoyaltyService.Transactions with @(restrict: [

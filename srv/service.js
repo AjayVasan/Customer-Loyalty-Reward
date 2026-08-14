@@ -23,6 +23,18 @@ module.exports = (srv) => {
       isCustomer: !!(u.is && u.is('customer'))
     }
   })
+
+  // role guard: customers may only register with their own login email;
+  // staff/admin may onboard any customer
+  srv.before('CREATE', 'Customers', async (req) => {
+    const u = req.user
+    if (u.is && (u.is('admin') || u.is('staff'))) return
+    const ownEmail = String(u.email || u.id || '').toLowerCase()
+    const rowEmail = String(req.data.email || '').toLowerCase()
+    if (!rowEmail || rowEmail !== ownEmail) {
+      return req.reject(403, 'Customers may only register with their own email address')
+    }
+  })
   cds.on('served', async () => {
     await policyCache.load(srv)
   })

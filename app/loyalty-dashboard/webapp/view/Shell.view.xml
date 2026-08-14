@@ -1,0 +1,7 @@
+<mvc:View
+  controllerName="loyaltydashboard.controller.Shell"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  displayBlock="true">
+  <App id="app" />
+</mvc:View>

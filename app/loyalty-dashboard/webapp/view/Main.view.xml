@@ -5,241 +5,285 @@
   xmlns="sap.m"
   xmlns:form="sap.ui.layout.form"
   displayBlock="true">
-  <App>
-    <pages>
-      <Page title="{i18n>appTitle}">
+  <Page title="{i18n>appTitle}">
         <subHeader>
           <Toolbar>
             <Label text="{i18n>userLabel}:" />
             <Text text="{ui>/userName}" />
-            <Text text="({ui>/userEmail})" visible="{= !!${ui>/userEmail} }" />
             <ToolbarSpacer />
-            <ObjectStatus
-              text="{i18n>roleAdmin}" state="Success"
-              visible="{ui>/isAdmin}" />
-            <ObjectStatus
-              text="{i18n>roleStaff}" state="Information"
-              visible="{= !${ui>/isAdmin} &amp;&amp; ${ui>/isStaff} }" />
-            <ObjectStatus
-              text="{i18n>roleCustomer}" state="None"
-              visible="{= !${ui>/isAdmin} &amp;&amp; !${ui>/isStaff} &amp;&amp; ${ui>/isCustomer} }" />
-            <ObjectStatus
-              text="{i18n>roleNone}" state="Error"
-              visible="{= !${ui>/isAdmin} &amp;&amp; !${ui>/isStaff} &amp;&amp; !${ui>/isCustomer} }" />
+            <ObjectStatus text="{i18n>roleAdmin}" state="Success" visible="{ui>/isAdmin}" />
+            <ObjectStatus text="{i18n>roleStaff}" state="Information" visible="{= !${ui>/isAdmin} &amp;&amp; ${ui>/isStaff} }" />
+            <ObjectStatus text="{i18n>roleCustomer}" state="None" visible="{= !${ui>/isAdmin} &amp;&amp; !${ui>/isStaff} &amp;&amp; ${ui>/isCustomer} }" />
           </Toolbar>
         </subHeader>
 
         <VBox class="sapUiMediumMargin">
-          <!-- KPI strip: staff + admin -->
-          <Panel
-            headerText="{i18n>kpiTitle}"
-            visible="{= ${ui>/isAdmin} || ${ui>/isStaff} }">
+          <!-- KPI strip: staff + admin only -->
+          <Panel headerText="{i18n>kpiTitle}" visible="{= ${ui>/isAdmin} || ${ui>/isStaff} }">
             <HBox class="kpiStrip">
               <GenericTile header="{i18n>kpiCustomers}">
-                <tileContent>
-                  <TileContent>
-                    <content><NumericContent value="{ui>/kpis/customers}" /></content>
-                  </TileContent>
-                </tileContent>
+                <tileContent><TileContent><content><NumericContent value="{ui>/kpis/customers}" /></content></TileContent></tileContent>
               </GenericTile>
               <GenericTile header="{i18n>kpiPointsIssued}">
-                <tileContent>
-                  <TileContent>
-                    <content><NumericContent value="{ui>/kpis/pointsIssued}" /></content>
-                  </TileContent>
-                </tileContent>
+                <tileContent><TileContent><content><NumericContent value="{ui>/kpis/pointsIssued}" /></content></TileContent></tileContent>
               </GenericTile>
               <GenericTile header="{i18n>kpiPointsRedeemed}">
-                <tileContent>
-                  <TileContent>
-                    <content><NumericContent value="{ui>/kpis/pointsRedeemed}" withMargin="false" /></content>
-                  </TileContent>
-                </tileContent>
+                <tileContent><TileContent><content><NumericContent value="{ui>/kpis/pointsRedeemed}" withMargin="false" /></content></TileContent></tileContent>
               </GenericTile>
               <GenericTile header="{i18n>kpiTransactions}">
-                <tileContent>
-                  <TileContent>
-                    <content><NumericContent value="{ui>/kpis/transactions}" /></content>
-                  </TileContent>
-                </tileContent>
+                <tileContent><TileContent><content><NumericContent value="{ui>/kpis/transactions}" /></content></TileContent></tileContent>
               </GenericTile>
               <GenericTile header="{i18n>kpiRedemptions}">
-                <tileContent>
-                  <TileContent>
-                    <content><NumericContent value="{ui>/kpis/redemptions}" /></content>
-                  </TileContent>
-                </tileContent>
+                <tileContent><TileContent><content><NumericContent value="{ui>/kpis/redemptions}" /></content></TileContent></tileContent>
               </GenericTile>
             </HBox>
           </Panel>
 
-          <!-- Staff / admin: record purchase -->
-          <Panel
-            headerText="{i18n>purchaseTitle}"
-            expandable="true" expanded="true"
-            visible="{= ${ui>/isAdmin} || ${ui>/isStaff} }">
-            <Text text="{i18n>purchaseSubtitle}" class="sapUiSmallMarginBottom" />
-            <form:SimpleForm editable="true" layout="ColumnLayout" columns="4">
-              <Label text="{i18n>purchaseCustomer}" />
-              <Select id="purchaseCustomer"
-                items="{ path: 'ui>/customers', sorter: { path: 'name' } }"
-                change=".onRateHintRefresh">
-                <core:Item key="{ui>customerID}" text="{ui>name} ({ui>email})" />
-              </Select>
-              <Label text="{i18n>purchaseChannel}" />
-              <Select id="purchaseChannel" change=".onRateHintRefresh">
-                <core:Item key="Online" text="Online" />
-                <core:Item key="Store" text="Store" />
-              </Select>
-              <Label text="{i18n>purchaseAmount}" />
-              <Input id="purchaseAmount" type="Number" placeholder="0.00" liveChange=".onRateHintRefresh" />
-              <Label text="{i18n>purchaseRateHint}" labelFor="rateHint" />
-              <Text id="rateHint" text="" />
-              <Label />
-              <Button
-                text="{i18n>purchaseSubmit}" type="Emphasized"
-                icon="sap-icon://add-activity-2"
-                press=".onRecordPurchase" />
-            </form:SimpleForm>
-          </Panel>
+          <IconTabBar id="roleTabs" expandable="false">
+            <items>
+              <!-- ================= CUSTOMER: own account only ================= -->
+              <IconTabFilter text="{i18n>tabCustomer}" icon="sap-icon://person-placeholder" visible="{ui>/isCustomer}">
+                <VBox class="sapUiSmallMargin">
+                  <ObjectHeader
+                    title="{ui>/me/name}"
+                    number="{ui>/me/totalPoints}" numberUnit="pts"
+                    intro="{ui>/me/email}">
+                    <statuses>
+                      <ObjectStatus text="{i18n>custTier}: {ui>/me/tier}"
+                        state="{= ${ui>/me/tier} === 'Gold' ? 'Success' : (${ui>/me/tier} === 'Silver' ? 'Information' : 'Warning') }" />
+                      <ObjectStatus text="{i18n>custLifetimePoints}: {ui>/me/lifetimePoints}" state="None" />
+                    </statuses>
+                  </ObjectHeader>
 
-          <!-- Customer account / redemption -->
-          <Panel headerText="{i18n>custTitle}" expandable="true" expanded="true">
-            <VBox class="sapUiSmallMarginBottom">
-              <HBox renderType="Bare" alignItems="Center">
-                <Label text="{i18n>custPickCustomer}:" class="sapUiSmallMarginEnd" />
-                <Select
-                  id="custPicker"
-                  items="{ path: 'ui>/customers', sorter: { path: 'name' } }"
-                  change=".onCustomerSelect">
-                  <core:Item key="{ui>customerID}" text="{ui>name} ({ui>email})" />
-                </Select>
-              </HBox>
+                  <form:SimpleForm editable="true" title="{i18n>redeemTitle}" layout="ColumnLayout" columns="4">
+                    <Label text="{i18n>redeemPoints}" />
+                    <Input id="redeemPoints" type="Number" placeholder="0" />
+                    <Label text="{i18n>redeemRemarks}" />
+                    <Input id="redeemRemarks" />
+                    <Label />
+                    <Button text="{i18n>redeemSubmit}" type="Emphasized" icon="sap-icon://present" press=".onRedeem" />
+                  </form:SimpleForm>
 
-              <HBox renderType="Bare" alignItems="Center" class="sapUiSmallMarginTop">
-                <VBox renderType="Bare" class="sapUiSmallMarginEnd">
-                  <Label text="{i18n>custTotalPoints}" />
-                  <ObjectNumber number="{ui>/selected/totalPoints}" unit="pts" />
+                  <Table id="myTxnTable" headerText="{i18n>custHistory}" items="{ui>/myTxns}"
+                    growing="true" growingThreshold="10" class="sapUiSmallMarginTop">
+                    <columns>
+                      <Column><Text text="Date" /></Column>
+                      <Column><Text text="Channel" /></Column>
+                      <Column hAlign="End"><Text text="Amount (₹)" /></Column>
+                      <Column hAlign="End"><Text text="Points" /></Column>
+                    </columns>
+                    <items>
+                      <ColumnListItem>
+                        <cells>
+                          <Text text="{ui>txnDate}" />
+                          <Text text="{ui>channel}" />
+                          <Text text="{ui>amount}" />
+                          <ObjectNumber number="{ui>pointsEarned}" emphasized="false" />
+                        </cells>
+                      </ColumnListItem>
+                    </items>
+                  </Table>
+
+                  <Table id="myRedTable" headerText="{i18n>custRedemptions}" items="{ui>/myReds}"
+                    growing="true" growingThreshold="10" class="sapUiSmallMarginTop">
+                    <columns>
+                      <Column><Text text="Date" /></Column>
+                      <Column hAlign="End"><Text text="Points used" /></Column>
+                      <Column><Text text="Remarks" /></Column>
+                    </columns>
+                    <items>
+                      <ColumnListItem>
+                        <cells>
+                          <Text text="{ui>redeemDate}" />
+                          <ObjectNumber number="{ui>pointsUsed}" emphasized="false" state="Error" />
+                          <Text text="{ui>remarks}" />
+                        </cells>
+                      </ColumnListItem>
+                    </items>
+                  </Table>
                 </VBox>
-                <VBox renderType="Bare" class="sapUiSmallMarginEnd sapUiLargeMarginBegin">
-                  <Label text="{i18n>custLifetimePoints}" />
-                  <ObjectNumber number="{ui>/selected/lifetimePoints}" unit="pts" />
+              </IconTabFilter>
+
+              <!-- ================= STAFF: find / add customer, record purchase ================= -->
+              <IconTabFilter text="{i18n>tabStaff}" icon="sap-icon://employee" visible="{ui>/isStaff}">
+                <VBox class="sapUiSmallMargin">
+                  <Panel headerText="{i18n>staffFindTitle}">
+                    <Text text="{i18n>staffFindHint}" class="sapUiSmallMarginBottom" />
+                    <HBox renderType="Bare" alignItems="Center">
+                      <Input id="staffSearchEmail" type="Email" placeholder="customer@example.com"
+                        class="sapUiSmallMarginEnd" width="320px" liveChange=".onStaffSearchChange" />
+                      <Button text="{i18n>staffSearchBtn}" icon="sap-icon://search" press=".onStaffSearch" type="Emphasized" />
+                    </HBox>
+                    <VBox id="staffCustomerCard" class="sapUiMediumMarginTop" visible="{= !!${ui>/staffCustomer} }">
+                      <ObjectHeader title="{ui>/staffCustomer/name}" intro="{ui>/staffCustomer/email}">
+                        <statuses>
+                          <ObjectStatus text="{i18n>custTier}: {ui>/staffCustomer/tier}" state="Information" />
+                        </statuses>
+                      </ObjectHeader>
+                    </VBox>
+                    <Text id="staffSearchMsg" text="" visible="false" class="sapUiSmallMarginTop" />
+                  </Panel>
+
+                  <Panel headerText="{i18n>purchaseTitle}" expandable="true" expanded="true">
+                    <Text text="{i18n>purchaseSubtitle}" class="sapUiSmallMarginBottom" />
+                    <form:SimpleForm editable="true" layout="ColumnLayout" columns="4">
+                      <Label text="{i18n>purchaseCustomer}" />
+                      <VBox renderType="Bare">
+                        <Text text="{= ${ui>/staffCustomer} ? ${ui>/staffCustomer/name} + ' (' + ${ui>/staffCustomer/email} + ')' : '' }" visible="{= !!${ui>/staffCustomer} }" />
+                        <Text text="{i18n>noCustomerSelected}" visible="{= !${ui>/staffCustomer} }" class="sapUiTinyMarginTop" />
+                      </VBox>
+                      <Label text="{i18n>purchaseChannel}" />
+                      <Select id="purchaseChannel" change=".onRateHintRefresh">
+                        <core:Item key="Online" text="Online" />
+                        <core:Item key="Store" text="Store" />
+                      </Select>
+                      <Label text="{i18n>purchaseAmount}" />
+                      <Input id="purchaseAmount" type="Number" placeholder="0.00" liveChange=".onRateHintRefresh" />
+                      <Label text="{i18n>purchaseRateHint}" labelFor="rateHint" />
+                      <Text id="rateHint" text="" />
+                      <Label />
+                      <Button text="{i18n>purchaseSubmit}" type="Emphasized" icon="sap-icon://add-activity-2" press=".onRecordPurchase" />
+                    </form:SimpleForm>
+                  </Panel>
+
+                  <Panel headerText="{i18n>staffNewCustomerTitle}" expandable="true" expanded="false">
+                    <form:SimpleForm editable="true" layout="ColumnLayout" columns="4">
+                      <Label text="{i18n>custName}" />
+                      <Input id="newCustName" width="320px" />
+                      <Label text="{i18n>custEmail}" />
+                      <Input id="newCustEmail" type="Email" width="320px" />
+                      <Label />
+                      <Button text="{i18n>staffNewCustomerBtn}" type="Emphasized" icon="sap-icon://add-contact" press=".onAddCustomer" />
+                    </form:SimpleForm>
+                  </Panel>
+
+                  <Button text="{i18n>directoryBtn}" icon="sap-icon://group" press=".onOpenDirectoryStaff" class="sapUiSmallMarginTop" />
                 </VBox>
-                <VBox renderType="Bare" class="sapUiLargeMarginBegin">
-                  <Label text="{i18n>custTier}" />
-                  <ObjectStatus
-                    text="{ui>/selected/tier}"
-                    state="{= ${ui>/selected/tier} === 'Gold' ? 'Success' : (${ui>/selected/tier} === 'Silver' ? 'Information' : 'Warning') }" />
+              </IconTabFilter>
+
+              <!-- ================= ADMIN: gated lookup + policies + thresholds ================= -->
+              <IconTabFilter text="{i18n>tabAdmin}" icon="sap-icon://shield" visible="{ui>/isAdmin}">
+                <VBox class="sapUiSmallMargin">
+                  <Panel headerText="{i18n>adminLookupTitle}">
+                    <Text text="{i18n>adminLookupHint}" class="sapUiSmallMarginBottom" />
+                    <HBox renderType="Bare" alignItems="Center">
+                      <Input id="adminLookupKey" placeholder="{i18n>adminLookupPlaceholder}"
+                        class="sapUiSmallMarginEnd" width="360px" />
+                      <Button text="{i18n>adminLookupBtn}" icon="sap-icon://search" press=".onAdminLookup" type="Emphasized" />
+                    </HBox>
+                    <Text id="adminLookupMsg" text="" visible="false" class="sapUiSmallMarginTop" />
+
+                    <VBox class="sapUiMediumMarginTop" visible="{= !!${ui>/adminCustomer} }">
+                      <ObjectHeader title="{ui>/adminCustomer/name}" intro="{ui>/adminCustomer/email}"
+                        number="{ui>/adminCustomer/totalPoints}" numberUnit="pts">
+                        <statuses>
+                          <ObjectStatus text="{i18n>custTier}: {ui>/adminCustomer/tier}"
+                            state="{= ${ui>/adminCustomer/tier} === 'Gold' ? 'Success' : (${ui>/adminCustomer/tier} === 'Silver' ? 'Information' : 'Warning') }" />
+                          <ObjectStatus text="{i18n>custLifetimePoints}: {ui>/adminCustomer/lifetimePoints}" state="None" />
+                        </statuses>
+                      </ObjectHeader>
+
+                      <Table headerText="{i18n>custHistory}" items="{ui>/adminTxns}" growing="true" growingThreshold="10">
+                        <columns>
+                          <Column><Text text="Date" /></Column>
+                          <Column><Text text="Channel" /></Column>
+                          <Column hAlign="End"><Text text="Amount (₹)" /></Column>
+                          <Column hAlign="End"><Text text="Points" /></Column>
+                        </columns>
+                        <items>
+                          <ColumnListItem>
+                            <cells>
+                              <Text text="{ui>txnDate}" />
+                              <Text text="{ui>channel}" />
+                              <Text text="{ui>amount}" />
+                              <ObjectNumber number="{ui>pointsEarned}" emphasized="false" />
+                            </cells>
+                          </ColumnListItem>
+                        </items>
+                      </Table>
+
+                      <Table headerText="{i18n>custRedemptions}" items="{ui>/adminReds}" growing="true" growingThreshold="10" class="sapUiSmallMarginTop">
+                        <columns>
+                          <Column><Text text="Date" /></Column>
+                          <Column hAlign="End"><Text text="Points used" /></Column>
+                          <Column><Text text="Remarks" /></Column>
+                        </columns>
+                        <items>
+                          <ColumnListItem>
+                            <cells>
+                              <Text text="{ui>redeemDate}" />
+                              <ObjectNumber number="{ui>pointsUsed}" emphasized="false" state="Error" />
+                              <Text text="{ui>remarks}" />
+                            </cells>
+                          </ColumnListItem>
+                        </items>
+                      </Table>
+                    </VBox>
+                  </Panel>
+
+                  <Panel headerText="{i18n>policyTitle}">
+                    <Text text="{i18n>policySubtitle}" class="sapUiSmallMarginBottom" />
+                    <Table id="policyTable" items="{ path: '/RewardPolicies' }">
+                      <columns>
+                        <Column><Text text="{i18n>policyChannel}" /></Column>
+                        <Column><Text text="{i18n>policyRate}" /></Column>
+                        <Column hAlign="End"><Text text="" /></Column>
+                      </columns>
+                      <items>
+                        <ColumnListItem>
+                          <cells>
+                            <Text text="{channel}" />
+                            <Input value="{pointsPerCurrencyUnit}" type="Number" />
+                            <Button text="{i18n>policySave}" icon="sap-icon://save" press=".onPolicySave" />
+                          </cells>
+                        </ColumnListItem>
+                      </items>
+                    </Table>
+
+                    <form:SimpleForm editable="true" title="{i18n>policyAddTitle}" layout="ColumnLayout" columns="4" class="sapUiMediumMarginTop">
+                      <Label text="{i18n>policyChannel}" />
+                      <Select id="newPolicyChannel">
+                        <core:Item key="Online" text="Online" />
+                        <core:Item key="Store" text="Store" />
+                      </Select>
+                      <Label text="{i18n>policyRate}" />
+                      <Input id="newPolicyRate" type="Number" placeholder="0.05" width="160px" />
+                      <Label />
+                      <Button text="{i18n>policyAddBtn}" icon="sap-icon://add" press=".onPolicyAdd" />
+                    </form:SimpleForm>
+
+                    <Table id="thresholdTable" headerText="{i18n>thresholdTitle}" class="sapUiMediumMarginTop" items="{ path: '/TierThresholds' }">
+                      <columns>
+                        <Column><Text text="{i18n>thresholdTier}" /></Column>
+                        <Column><Text text="{i18n>thresholdMin}" /></Column>
+                        <Column hAlign="End"><Text text="" /></Column>
+                      </columns>
+                      <items>
+                        <ColumnListItem>
+                          <cells>
+                            <Text text="{tier}" />
+                            <Input value="{minLifetimePoints}" type="Number" />
+                            <Button text="{i18n>thresholdSave}" icon="sap-icon://save" press=".onThresholdSave" />
+                          </cells>
+                        </ColumnListItem>
+                      </items>
+                    </Table>
+
+                    <form:SimpleForm editable="true" title="{i18n>thresholdAddTitle}" layout="ColumnLayout" columns="4" class="sapUiMediumMarginTop">
+                      <Label text="{i18n>thresholdTier}" />
+                      <Input id="newThresholdTier" placeholder="Platinum" width="160px" />
+                      <Label text="{i18n>thresholdMin}" />
+                      <Input id="newThresholdMin" type="Number" placeholder="50000" width="160px" />
+                      <Label />
+                      <Button text="{i18n>thresholdAddBtn}" icon="sap-icon://add" press=".onThresholdAdd" />
+                    </form:SimpleForm>
+                  </Panel>
+
+                  <Button text="{i18n>masterListBtn}" icon="sap-icon://customer-view" press=".onOpenMasterList" class="sapUiSmallMarginTop" />
                 </VBox>
-              </HBox>
-            </VBox>
-
-            <form:SimpleForm
-              editable="true" title="{i18n>redeemTitle}"
-              layout="ColumnLayout" columns="4">
-              <Label text="{i18n>redeemPoints}" />
-              <Input id="redeemPoints" type="Number" placeholder="0" />
-              <Label text="{i18n>redeemRemarks}" />
-              <Input id="redeemRemarks" />
-              <Label />
-              <Button
-                text="{i18n>redeemSubmit}" type="Emphasized"
-                icon="sap-icon://present"
-                press=".onRedeem" />
-            </form:SimpleForm>
-
-            <Table
-              id="purchaseHistory" headerText="{i18n>custHistory}"
-              items="{
-                path: '/Transactions',
-                parameters: { $orderby: 'txnDate desc' }
-              }"
-              growing="true" growingThreshold="10" class="sapUiSmallMarginTop">
-              <columns>
-                <Column><Text text="Date" /></Column>
-                <Column><Text text="Channel" /></Column>
-                <Column hAlign="End"><Text text="Amount (₹)" /></Column>
-                <Column hAlign="End"><Text text="Points" /></Column>
-              </columns>
-              <items>
-                <ColumnListItem>
-                  <cells>
-                    <Text text="{txnDate}" />
-                    <Text text="{channel}" />
-                    <Text text="{amount}" />
-                    <ObjectNumber number="{pointsEarned}" emphasized="false" />
-                  </cells>
-                </ColumnListItem>
-              </items>
-            </Table>
-
-            <Table
-              id="redemptionHistory" headerText="{i18n>custRedemptions}"
-              items="{
-                path: '/Redemptions',
-                parameters: { $orderby: 'redeemDate desc' }
-              }"
-              growing="true" growingThreshold="10" class="sapUiSmallMarginTop">
-              <columns>
-                <Column><Text text="Date" /></Column>
-                <Column hAlign="End"><Text text="Points used" /></Column>
-                <Column><Text text="Remarks" /></Column>
-              </columns>
-              <items>
-                <ColumnListItem>
-                  <cells>
-                    <Text text="{redeemDate}" />
-                    <ObjectNumber number="{pointsUsed}" emphasized="false" state="Error" />
-                    <Text text="{remarks}" />
-                  </cells>
-                </ColumnListItem>
-              </items>
-            </Table>
-          </Panel>
-
-          <!-- Admin: policies + thresholds -->
-          <Panel
-            headerText="{i18n>policyTitle}"
-            visible="{ui>/isAdmin}"
-            expandable="true" expanded="true">
-            <Text text="{i18n>policySubtitle}" class="sapUiSmallMarginBottom" />
-            <Table id="policyTable" items="{ path: '/RewardPolicies' }">
-              <columns>
-                <Column><Text text="{i18n>policyChannel}" /></Column>
-                <Column><Text text="{i18n>policyRate}" /></Column>
-                <Column hAlign="End"><Text text="" /></Column>
-              </columns>
-              <items>
-                <ColumnListItem>
-                  <cells>
-                    <Text text="{channel}" />
-                    <Input value="{pointsPerCurrencyUnit}" type="Number" />
-                    <Button text="{i18n>policySave}" icon="sap-icon://save" press=".onPolicySave" />
-                  </cells>
-                </ColumnListItem>
-              </items>
-            </Table>
-
-            <Table
-              id="thresholdTable" headerText="{i18n>thresholdTitle}"
-              class="sapUiMediumMarginTop"
-              items="{ path: '/TierThresholds' }">
-              <columns>
-                <Column><Text text="{i18n>thresholdTier}" /></Column>
-                <Column><Text text="{i18n>thresholdMin}" /></Column>
-                <Column hAlign="End"><Text text="" /></Column>
-              </columns>
-              <items>
-                <ColumnListItem>
-                  <cells>
-                    <Text text="{tier}" />
-                    <Input value="{minLifetimePoints}" type="Number" />
-                    <Button text="{i18n>thresholdSave}" icon="sap-icon://save" press=".onThresholdSave" />
-                  </cells>
-                </ColumnListItem>
-              </items>
-            </Table>
-          </Panel>
+              </IconTabFilter>
+            </items>
+          </IconTabBar>
         </VBox>
 
         <footer>
@@ -248,7 +292,5 @@
             <Link text="{i18n>logout}" href="/logout" target="_top" />
           </Toolbar>
         </footer>
-      </Page>
-    </pages>
-  </App>
+  </Page>
 </mvc:View>

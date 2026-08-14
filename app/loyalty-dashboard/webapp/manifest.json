@@ -59,10 +59,27 @@
       }
     },
     "rootView": {
-      "viewName": "loyaltydashboard.view.Main",
+      "viewName": "loyaltydashboard.view.Shell",
       "type": "XML",
-      "async": true,
-      "id": "Main"
+      "async": true
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "loyaltydashboard.view",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "async": true
+      },
+      "routes": [
+        { "name": "main", "pattern": "", "target": "main" },
+        { "name": "customersList", "pattern": "customers/{mode}", "target": "customersList" }
+      ],
+      "targets": {
+        "main": { "viewName": "Main" },
+        "customersList": { "viewName": "CustomersList" }
+      }
     },
     "resources": {
       "css": [
