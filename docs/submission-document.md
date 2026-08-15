@@ -438,3 +438,18 @@ Notes on consistency: S2/S3 and S4/S5 change balances, so take S7 last if you wa
 the admin drill-down to include the newest rows. Alice's balance in S4 should be
 2,245 if S3 has already run once; it becomes 2,242 after S5, and S7 will show
 2,242. That is fine, the text in 9.3 does not pin her balance.
+
+## Appendix: original design artifacts
+
+Three working documents from the design phase ship with the report as-is:
+
+- `Customer Reward Policy Flow` (PNG): the planning sketch of how a purchase flows
+  through the channel policy to issued points, drawn before the handler code.
+- `Customer Identity and Role` (PDF): the identity and role mapping worked out when
+  deciding what each role may read and write; the `@restrict` matrix in section 4 is
+  the codified version of it.
+- `Loyalty Service, CRUD API Test Harness` (PDF): a printout of the CRUD test page
+  run, companion to the screenshot in section 6.
+
+They show the design-to-code trail: sketch first, then the enforced version of the
+same decisions in the service.
