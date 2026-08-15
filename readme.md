@@ -63,6 +63,8 @@ Full flow, MTA modules, and verification steps: [docs/deployment.md](docs/deploy
 | Document | Content |
 |---|---|
 | [docs/submission-document.md](docs/submission-document.md) | Full submission content: overview, architecture, data model, logic, sprints, testing, deployment, prompts, role-by-role showcase, with screenshot capture list |
+| [docs/flow-diagram.md](docs/flow-diagram.md) | High-level flow diagram (Mermaid): login → role → purchase engine → guarded update |
+| [docs/er-diagram.md](docs/er-diagram.md) | Data model / ER diagram (Mermaid) with attribute-level notes |
 | [docs/sprint-plan.md](docs/sprint-plan.md) | Agile delivery plan, user stories, acceptance criteria, HANA tasks |
 | [docs/test-cases.md](docs/test-cases.md) | Test Case Sheet |
 | [docs/deployment.md](docs/deployment.md) | Deployment Steps (BTP CF + HANA Cloud) |

@@ -65,6 +65,9 @@ balances move in the same request.
    └─────────────────┘
 ```
 
+Rendered high-level flow diagram (Mermaid, end-to-end request flow through purchase
+engine and cache): [flow-diagram.md](flow-diagram.md).
+
 The service is one CAP service with five entities (section 3). Customers,
 Transactions and Redemptions come straight from the problem statement. I added
 RewardPolicy and TierThreshold as configuration entities because the admin role in
@@ -81,14 +84,15 @@ submission rather than a local-only tool.
 
 ## 3. Data Model Design
 
-Full attribute-level design: [data-model.md](data-model.md). Summary:
+Full attribute-level design: [data-model.md](data-model.md), ER diagram in Mermaid:
+[er-diagram.md](er-diagram.md). Summary:
 
-**Customers**: `customerID` (UUID key), `name`, `email` (unique), `channel` they
-registered from, `totalPoints` (spendable balance, starts 0), `lifetimePoints`
-(never decreases, drives tiering), `tier`. Tier is derived, never stored from user
-input: `lifetimePoints` 5,000 → Silver, 20,000 → Gold, 50,000 → Platinum, else
-Bronze. When an admin edits a threshold, every existing customer's tier is re-derived
-in the same request.
+**Customers**: `customerID` (UUID key), `name`, `email` (unique), `totalPoints`
+(spendable balance, starts 0), `lifetimePoints` (never decreases, drives tiering),
+`tier`. Tier is derived, never stored from user input: `lifetimePoints` 5,000 →
+Silver, 20,000 → Gold, 50,000 → Platinum, else Bronze. When an admin edits a
+threshold, every existing customer's tier is re-derived in the same request.
+
 
 **Transactions**: `txnID` key, link to customer, `channel` (Online | Store),
 `price` (list price, floored to the ₹0.50 grid at entry), `pointsApplied` (points put
