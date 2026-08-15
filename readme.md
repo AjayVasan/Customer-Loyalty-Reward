@@ -62,7 +62,7 @@ Full flow, MTA modules, and verification steps: [docs/deployment.md](docs/deploy
 
 | Document | Content |
 |---|---|
-| [docs/data-model.md](docs/data-model.md) | Data Model Design — txt.md attribute-by-attribute conformance + extensions |
+| [docs/project-overview.md](docs/project-overview.md) | Project Overview — objective, flow, role-by-role showcase with screenshots, sprint log, deliverables map |
 | [docs/sprint-plan.md](docs/sprint-plan.md) | Agile delivery plan, user stories, acceptance criteria, HANA tasks |
 | [docs/test-cases.md](docs/test-cases.md) | Test Case Sheet |
 | [docs/deployment.md](docs/deployment.md) | Deployment Steps (BTP CF + HANA Cloud) |

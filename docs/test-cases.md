@@ -3,8 +3,11 @@
 Automated suite: `npm test` (`test/loyalty.test.js`, node --test + @cap-js/cds-test,
 in-memory SQLite, basic-auth mock users **alice**=customer, **bob**=staff, **carol**=admin — all password `pass`).
 Interactive CRUD matrix (browser): `http://localhost:4004/apitestharness/index.html`
-(`app/api-test-harness`, dev-only — not part of the MTA). Executed results with
-actual responses: [crud-test-results.md](crud-test-results.md) (38/38).
+locally, or **deployed** at
+`https://9231c958trial-dev-loyalty-rewards.cfapps.us10-001.hana.ondemand.com/apitestharness/index.html`
+(`app/api-test-harness`). Executed results with actual responses:
+[crud-test-results.md](crud-test-results.md) (38/38 locally; on the deployed CF app
+as admin: 34/36, the two cross-role cases require a customer-only login by design).
 
 ## Automated cases
 

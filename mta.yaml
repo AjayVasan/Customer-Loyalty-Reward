@@ -86,6 +86,10 @@ modules:
       - loyalty-dashboard.zip
       name: loyaltyrewardsloyaltydashboard
       target-path: app/
+    - artifacts:
+      - apitestharness.zip
+      name: loyaltyrewardsapitestharness
+      target-path: app/
 - name: loyaltyrewardscustomersmanagement
   type: html5
   path: app/customers-management
@@ -135,6 +139,19 @@ modules:
     commands:
     - npm install
     - npm run build:cf
+    supported-platforms: []
+- name: loyaltyrewardsapitestharness
+  type: html5
+  path: app/api-test-harness
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - mkdir -p dist
+    - cp webapp/index.html dist/
+    - cp webapp/manifest.json dist/
+    - cp webapp/xs-app.json dist/
+    - zip -q -j dist/apitestharness.zip dist/index.html dist/manifest.json dist/xs-app.json
     supported-platforms: []
 resources:
 - name: loyalty-rewards-auth

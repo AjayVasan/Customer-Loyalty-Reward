@@ -1,7 +1,7 @@
 {
   "name": "api-test-harness",
   "version": "1.0.0",
-  "description": "Dev-only CRUD API test harness for LoyaltyService — not deployed (excluded from mta.yaml and .cdsrc.json build tasks)",
+  "description": "CRUD API test harness for LoyaltyService — deployed with the MTA at /apitestharness/index.html and served by cds watch in dev",
   "private": true,
   "keywords": [
     "ui5",
