@@ -12,3 +12,4 @@ mta-op-*/
 .gen/
 mbt/
 *.log
+submission/
