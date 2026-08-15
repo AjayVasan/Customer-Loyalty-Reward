@@ -2,6 +2,9 @@
 
 Mermaid `erDiagram` source; renders on GitHub, VS Code (mermaid plugin), mermaid.live, and most markdown viewers. Attribute types as in `db/data-model.cds` (all entities also carry CAP `managed` fields: createdAt, createdBy, modifiedAt, modifiedBy).
 
+Ready-made export: [er-diagram.png](er-diagram.png) (high resolution, drop straight
+into Word or PDF).
+
 ```mermaid
 erDiagram
     CUSTOMER ||--o{ TRANSACTION : "makes"
