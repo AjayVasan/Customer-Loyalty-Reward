@@ -251,6 +251,10 @@ live OData service: creates, reads with filters and `$apply` aggregates, updates
 deletes on every entity, plus the function import, and checks each response against
 the expected contract.
 
+The full printout of this run (all 36 case rows with status codes) is attached as
+the exhibit `Loyalty Service, CRUD API Test Harness.pdf`; the screenshot below shows
+the same run in the browser.
+
 **[ATTACH S9: CRUD page after a full run]**
 
 Expected result as the BTP admin login: **34 of 36 pass**. The two red rows are the
