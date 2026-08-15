@@ -252,10 +252,9 @@ deletes on every entity, plus the function import, and checks each response agai
 the expected contract.
 
 The full printout of this run (all 36 case rows with status codes) is attached as
-the exhibit `Loyalty Service, CRUD API Test Harness.pdf`; the screenshot below shows
-the same run in the browser.
+the exhibit `Loyalty Service, CRUD API Test Harness.pdf` in the design artifacts.
 
-**[ATTACH S9: CRUD page after a full run]**
+**[ATTACH S9: the CRUD harness PDF printout]**
 
 Expected result as the BTP admin login: **34 of 36 pass**. The two red rows are the
 cross-role cases ("customer buys for a foreign account", "customer redeems a foreign
@@ -291,7 +290,11 @@ the model, build, deploy, and HANA applies the additive column without touching
 existing rows. Every command with sample output is logged in
 [commands-reference.md](commands-reference.md).
 
-**[ATTACH S11: cf deploy success output, or `cf apps` showing loyalty-rewards running]**
+**[ATTACH S17: `S17-mbt-build.png`]** (mbt build producing the mtar),
+**[ATTACH S11: `S11-cf-deploy.png`]** (the full cf deploy output ending in
+"Process finished.") and **[ATTACH S18: `S18-cf-apps.png`]** (cf apps showing
+loyalty-rewards and loyalty-rewards-srv started, with their live URLs) document the
+pipeline end to end.
 
 Local: `npm run watch` serves the same app on http://localhost:4004 with mock basic
 auth (alice/bob/carol, password `pass`) and the CRUD page at
@@ -318,7 +321,7 @@ matches your strongest role. Everything below is from the deployed system.
 
 ### 9.1 Customer view: My Account
 
-**[ATTACH S2: Customer tab with the purchase form filled]**
+**[ATTACH S2: `S2-customer-form-hint.png`]**
 
 First login creates the loyalty account automatically and says welcome. After that
 the tab shows the balance, tier and lifetime points up top, then the two forms and
@@ -326,21 +329,28 @@ the two history tables.
 
 The purchase form is where part-payment meets the customer. Pick a channel, type the
 price, optionally put points in. The grey hint line under the form recalculates on
-every keystroke; in the screenshot it reads `₹1 = 0.05 pts (Online): price ₹199.50
-— 4 pts cover ₹2.00: payable ₹197.50: +9 pts`, which is the whole computation made
+every keystroke; in the screenshot it reads `₹1 = 0.05 pts (Online) — price ₹199.00
+— 6 pts cover ₹3.00 — payable ₹196.00 — +9 pts`, which is the whole computation made
 visible before anything is submitted. The points field is clamped live to what the
 balance and the price allow, so typing 999 just snaps back to the maximum.
 
-**[ATTACH S3: same tab after submitting, history row + toast visible]**
+**[ATTACH S3: `S3-customer-purchase-result.png`]**
 
-Submitting shows a toast with the earned points, and the new row appears in the
-purchase history with price, payable, points applied and points earned as columns.
-The redemption form below it spends points without a purchase, with an optional
-remark.
+Submitting shows a toast (`Purchase recorded: 9 points earned by
+mrajayvasan@gmail.com` in the screenshot, ₹199 at the online rate) and the new row
+appears in the purchase history with date, channel, price, points used and points
+earned as columns.
+
+**[ATTACH S12: `S12-customer-redeem.png`]**
+
+The redeem form spends points without a purchase. In the screenshot 5 points go out
+against the remark "Gift Card", the balance drops from 12 to 7, and the redemptions
+table shows both this entry and the earlier 6-point row that was applied to a
+purchase. Lifetime points stays untouched at 18, redeeming never costs a tier.
 
 ### 9.2 Retail staff view: Staff Operations
 
-**[ATTACH S4: Staff tab with a searched customer card and the purchase form filled]**
+**[ATTACH S4: `S4-staff-find-purchase-form.png`]**
 
 The KPI strip across the top is deliberately their working day: customers, total
 purchases, purchases today, points issued split by channel. Below that, the find
@@ -348,37 +358,72 @@ panel: type an email, press search, get a card with name, current balance and ti
 That balance matters operationally, it is the ceiling for points the customer can
 spend in the next field.
 
-The screenshot has the flow mid-story: Alice found (2,245 pts, Bronze), a ₹75.30
-purchase with 6 points applied, and the same live hint the customer sees.
+The screenshot has the flow mid-story: Ajay found (4,676 pts, Silver), a ₹1,599
+purchase with 100 points applied, and the live hint reading `price ₹1,599.00 — 100
+pts cover ₹50.00 — payable ₹1,549.00 — +77 pts`.
 
-**[ATTACH S5: after recording the purchase, toast with earned points and refreshed balance]**
+**[ATTACH S5: `S5-staff-purchase-result.png`]**
 
-The "Add new customer" panel onboards someone on the spot and selects them for the
-purchase form. The "Customer directory" button opens a plain contact list (name,
-email, tier) with no drill-down, because staff do not get history.
+Recording it confirms with `Purchase recorded: 77 points earned by Ajay`, exactly
+the previewed number: floor(1,549 × 0.05) = 77. The program counters tick up as the
+counter team works (38 purchases, 2 today at that point).
 
-**[ATTACH S6: Customer directory page]**
+**[ATTACH S13: `S13-staff-add-customer-form.png`]** and
+**[ATTACH S14: `S14-staff-customer-created.png`]**
+
+The "Add new customer" panel onboards someone on the spot: in the screenshot staff
+type "Test Customer Entry" / test@gmail.com, click create, and the toast confirms
+the customer is ready for purchase entry. The customer count moves from 9 to 10 and
+the finder selects the new account (0 pts, Bronze) so the very next action can be
+their first purchase.
+
+The "Customer directory" button opens a plain contact list (name, email, tier) with
+no drill-down and no balances, because staff do not get history or financial data.
+
+**[ATTACH S6: `S6-staff-directory.png`]**
+
 
 ### 9.3 Admin view: Admin Console
 
-**[ATTACH S1: Admin tab on login: KPI strip + policy/threshold tables]**
+**[ATTACH S1: `S1-admin-console.png`]**
 
-The admin strip answers program-level questions: customers, purchases, points issued
-per channel, points redeemed, and outstanding points, the sum of all live balances,
-which is the program's open liability. It reconciles: issued minus redeemed equals
-outstanding (68,932 = 69,549 − 558 in the data behind the screenshot).
+The admin strip answers program-level questions: in the screenshot, 8 customers,
+36 purchases, 7,680 points issued online and 1,017 in store, 3,026 redeemed, and
+7,479 outstanding, the program's open liability of earned-but-unspent points. Below
+it the two config tables show the live rules: Online 0.05 and Store 0.03 points per
+₹1, and tier thresholds where Bronze is the 0-point entry level and the higher tiers
+are configured through the same form (Platinum pre-filled at 50,000 in the shot).
 
 Nothing about an individual customer is shown until the admin actively looks someone
 up, by email or by UUID.
 
-**[ATTACH S7: Admin lookup drill-down: full purchase + redemption history of one customer]**
+**[ATTACH S7: `S7-admin-lookup.png`]**
 
-The lookup opens the full 360: identity, balances, tier, the complete purchase table
-and every redemption including the automatic part-payment rows. Reward policies and
-tier thresholds are editable inline on the same tab; saving a rate reloads the
-server-side policy cache immediately, and saving a threshold re-derives everyone's
-tier. Duplicate policies (one per channel is the rule) come back as a clean 409
-rather than a database error.
+The lookup opens the full 360: in the screenshot it is test@gmail.com with 248
+current and 248 lifetime points, the two recorded purchases (₹1,999 → 99 pts,
+₹2,999 → 149 pts) and the redemptions section, still empty at that point in the
+walkthrough.
+
+**[ATTACH S16: `S16-admin-lookup-partpayment.png`]**
+
+The same customer after a part-paid purchase is the best single exhibit of the
+points-as-payment feature: a ₹12 purchase with 22 points applied shows up as one
+transaction (payable ₹1, 0 pts earned) plus one automatic redemption row with the
+remark `Applied to purchase (₹12 → payable ₹1)`, and the balance moves 248 → 226
+while lifetime points stays 248.
+
+Reward policies and tier thresholds are editable inline on the same tab; saving a
+rate reloads the server-side policy cache immediately, and saving a threshold
+re-derives everyone's tier. Duplicate policies (one per channel is the rule) come
+back as a clean 409 rather than a database error.
+
+**[ATTACH S8: `S8-policy-edit.png`]** and **[ATTACH S15: `S15-policy-5-55.png`]**
+
+The policy screenshots show the Online rate being edited twice in a row during
+testing (0.50, then 5.55 points per ₹1), each save confirmed by toast and each
+change applying only to future purchases. The 5.55 experiment is also the honest
+explanation for the very large balances some test accounts accumulated, like the
+66,742-point Platinum account in the master list below.
 
 The "Customer master list" button opens the whole customer base with balances and
 tiers, the admin counterpart of the staff directory. It is the one place that shows
@@ -386,7 +431,8 @@ everyone side by side; per-customer analysis still only happens through the look
 which keeps the default admin screen free of personal data, matching the requirement
 that no customer details appear unless an id or email is actively searched.
 
-**[ATTACH S8: policy table with an inline edit, or the 409 toast after adding a duplicate]**
+**[ATTACH S19: `S19-admin-master-list.png`]**
+
 
 ---
 
@@ -412,36 +458,40 @@ Every requirement from the problem statement, and where it landed:
 
 Beyond the spec: points as part-payment on the ₹0.50 grid, tier thresholds with
 lifetime points, the ownership guard, auto-onboarding at first login, and the
-program-level KPI strip that reconciles issued minus redeemed to outstanding.
+program-level KPI strip.
 
 ---
 
-## Screenshot capture list
+## Screenshot manifest
 
-All captures from the live app
-(https://9231c958trial-dev-loyalty-rewards.cfapps.us10-001.hana.ondemand.com/loyaltydashboard/index.html),
-logged in with your own account, browser window wide enough to show the full tab
-(1440px or more is ideal). Take them in one session so the numbers agree with each
-other.
+All screenshots are taken, named and placed. Files live in `submission/screenshots/`;
+each marker above names its file. For the final PDF, paste each file at its marker.
 
-| # | Section | What to capture | How to get that exact state |
+| File | Marker | Section | What it shows |
 |---|---|---|---|
-| S1 | 9.3 | Admin Console tab: KPI strip + policy and threshold tables, no customer data visible | Log in (you land on Admin Console as admin). Wait for both KPI strips to load. Scroll so the KPI strip and the two config tables are in frame. |
-| S2 | 9.1 | Customer tab, purchase form filled, hint line visible | Switch to the "My Account" tab. Channel Online, price `199.99`, points `4`. Make sure the grey hint line under the form is readable in the shot. |
-| S3 | 9.1 | Same tab right after submitting a purchase | Submit the form from S2. Capture immediately: toast with earned points still visible, new first row in purchase history showing price / payable / points applied / points earned. |
-| S4 | 9.2 | Staff tab: searched customer card + purchase form | Switch to "Staff Operations". Search `alice@example.com`. With the card showing balance and tier, enter price `75.30`, points `6`. Hint line should read price ₹75.00 / payable ₹72.00. |
-| S5 | 9.2 | After recording the staff purchase | Submit the S4 form. Capture the toast ("3 points earned by ...") and the card's refreshed balance (2,245). |
-| S6 | 9.2 / 9.3 | Customer directory (and optionally the admin master list) | Staff: click "Customer directory" for name, email, tier only. Optional extra: on Admin Console click "Customer master list", same table plus balances. |
-| S7 | 9.3 | Admin lookup drill-down | Back on Admin Console, look up `alice@example.com`. Capture the expanded view: purchase table + redemption history. |
-| S8 | 9.3 | Policy inline edit or duplicate-policy 409 | Either edit the Online rate inline and show the save toast, or try adding a second Online policy and capture the 409 error message. |
-| S9 | 6 | CRUD page, full run | Open /apitestharness/index.html, click "Run all cases", wait for the summary line "34 passed, 2 failed". Keep the two red rows in frame. |
-| S10 | 8 | Your Build Code prompt screenshots | From your own captures of the four generation prompts, in order. |
-| S11 | 7 | Deployment proof | Terminal with the successful `cf deploy` ending (or `cf apps` showing `loyalty-rewards` started). |
+| S1-admin-console.png | S1 | 9.3 | Admin Console: KPI strip (8 customers, 36 purchases, 7,680 online / 1,017 store issued, 3,026 redeemed, 7,479 outstanding), policy and threshold tables |
+| S2-customer-form-hint.png | S2 | 9.1 | My Account purchase form, ₹199 with 6 pts, hint: payable ₹196.00, +9 pts |
+| S3-customer-purchase-result.png | S3 | 9.1 | Toast "9 points earned", first purchase row in history |
+| S12-customer-redeem.png | S12 | 9.1 | Redeem 5 pts for a Gift Card, balance 12 → 7, lifetime unchanged at 18 |
+| S4-staff-find-purchase-form.png | S4 | 9.2 | Ajay found (4,676 pts, Silver), ₹1,599 with 100 pts, payable ₹1,549, +77 |
+| S5-staff-purchase-result.png | S5 | 9.2 | Toast "77 points earned by Ajay", counters updated |
+| S13-staff-add-customer-form.png | S13 | 9.2 | Add new customer form filled (Test Customer Entry / test@gmail.com) |
+| S14-staff-customer-created.png | S14 | 9.2 | Customer created toast, count 9 → 10, finder selects new account |
+| S6-staff-directory.png | S6 | 9.2 | Staff customer list: name, email, tier only, no balances |
+| S7-admin-lookup.png | S7 | 9.3 | Admin lookup: test@gmail.com, 248 pts, two purchases, no redemptions yet |
+| S16-admin-lookup-partpayment.png | S16 | 9.3 | ₹12 purchase with 22 pts applied: payable ₹1 + auto redemption row, 248 → 226 |
+| S8-policy-edit.png | S8 | 9.3 | Online rate edited to 0.50, save toast |
+| S15-policy-5-55.png | S15 | 9.3 | Online rate at 5.55 during testing (explains the large test balances) |
+| S19-admin-master-list.png | S19 | 9.3 | Admin master list: all customers with tiers and balances |
+| S17-mbt-build.png | S17 | 7 | mbt build output, mtar generated |
+| S11-cf-deploy.png | S11 | 7 | Full cf deploy output, "Process finished." |
+| S18-cf-apps.png | S18 | 7 | cf apps: loyalty-rewards and loyalty-rewards-srv started with URLs |
+| S10-prompt-1/2/3.png | S10 | 8 | Build Code prompt screenshots |
+| S9 (design artifacts) | S9 | 6 | CRUD harness full-run printout (PDF) |
 
-Notes on consistency: S2/S3 and S4/S5 change balances, so take S7 last if you want
-the admin drill-down to include the newest rows. Alice's balance in S4 should be
-2,245 if S3 has already run once; it becomes 2,242 after S5, and S7 will show
-2,242. That is fine, the text in 9.3 does not pin her balance.
+Optional extras if the reviewer wants more walkthrough depth: EX-1/EX-2 (staff
+recording a ₹2,999 purchase for the new test customer, +99 then +149 pts), EX-3
+(admin stats mid-testing). Attach them after section 9.2 or leave them out.
 
 ## Appendix: original design artifacts
 
