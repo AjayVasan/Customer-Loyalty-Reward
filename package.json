@@ -11,17 +11,18 @@
     "@sap/xssec": "^4"
   },
   "devDependencies": {
+    "@cap-js/cds-test": "^1.0.2",
     "@cap-js/sqlite": "^2.4",
     "@sap/cds-dk": "^9",
     "@sap/ux-ui5-tooling": "^1.30.0",
     "cds-plugin-ui5": "^0.17.0",
-    "rimraf": "^5.0.5",
-    "mbt": "^1.2.49"
+    "mbt": "^1.2.49",
+    "rimraf": "^5.0.5"
   },
   "scripts": {
     "start": "cds-serve",
     "watch": "cds watch",
-    "test": "NODE_ENV=test node --test 'test/**/*.test.js'",
+    "test": "NODE_PATH= CDS_PLUGIN_UI5_ACTIVE=false NODE_ENV=test node --test --test-force-exit test/*.test.js",
     "watch-customers-management": "cds watch --open customersmanagement/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-transactions-management": "cds watch --open transactionsmanagement/index.html?sap-ui-xx-viewCache=false --livereload false",
     "watch-reward-policies": "cds watch --open rewardpolicies/index.html?sap-ui-xx-viewCache=false --livereload false",
@@ -43,11 +44,11 @@
         "db": {
           "kind": "sqlite",
           "credentials": {
-            "url": "db.sqlite"
+            "url": ":memory:"
           }
         },
         "auth": {
-          "kind": "dummy",
+          "kind": "basic",
           "users": {
             "alice": {
               "password": "pass",
@@ -81,10 +82,10 @@
           }
         },
         "auth": {
-          "kind": "dummy",
+          "kind": "basic",
           "users": {
             "alice": {
-              "password": "",
+              "password": "pass",
               "roles": [
                 "customer"
               ],
@@ -93,13 +94,13 @@
               }
             },
             "bob": {
-              "password": "",
+              "password": "pass",
               "roles": [
                 "staff"
               ]
             },
             "carol": {
-              "password": "",
+              "password": "pass",
               "roles": [
                 "admin"
               ]

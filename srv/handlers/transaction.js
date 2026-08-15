@@ -2,11 +2,15 @@ const policyCache = require('../lib/policy-cache')
 const { computeTier } = require('../lib/tier')
 const { VALID_CHANNELS } = require('../lib/channels')
 const { POINT_VALUE_INR } = require('../lib/point-value')
+const { assertOwnCustomer } = require('../lib/ownership')
 
 module.exports = (srv) => {
   const { Transactions, Customers, Redemptions } = srv.entities
 
   srv.before('CREATE', Transactions, async (req) => {
+    // ownership FIRST: a customer acting on a foreign account gets 403 before
+    // any validation reveals whether that account exists
+    await assertOwnCustomer(srv)(req)
     const { channel } = req.data
     const customerKey = req.data.customerID_customerID
 
@@ -78,10 +82,25 @@ module.exports = (srv) => {
     // logic triggered by an already-authorized Transaction CREATE; no role is
     // granted direct Customer-write in srv/service.cds, so all point changes are
     // forced through this validated path).
-    await UPDATE(Customers, customerKey).set({
-      totalPoints: customer.totalPoints - pointsApplied + pointsEarned,
-      lifetimePoints: newLifetimePoints,
-      tier: newTier
-    })
+    //
+    // Concurrency: the balance mutation is a single atomic UPDATE with a
+    // `totalPoints >= pointsApplied` guard, computed by the database
+    // (totalPoints = totalPoints - applied + earned) — NOT a read-modify-write
+    // of the value fetched above. Two concurrent purchases therefore cannot
+    // double-spend the same points: the loser's guard matches 0 rows and the
+    // request is rejected. On SAP HANA the row lock + re-evaluated WHERE make
+    // this safe under read-committed isolation. The friendly pre-checks above
+    // remain for precise error messages; this guard is the correctness backstop.
+    const rows = await UPDATE(Customers)
+      .where({ customerID: customerKey })
+      .and('totalPoints >=', pointsApplied)
+      .set({
+        totalPoints: { xpr: [{ ref: ['totalPoints'] }, '-', { val: pointsApplied }, '+', { val: pointsEarned }] },
+        lifetimePoints: { xpr: [{ ref: ['lifetimePoints'] }, '+', { val: pointsEarned }] },
+        tier: newTier
+      })
+    if (rows !== 1) {
+      return req.reject(400, `Insufficient points: balance changed concurrently, retry the purchase`, 'pointsApplied')
+    }
   })
 }

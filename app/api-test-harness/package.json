@@ -1,0 +1,12 @@
+{
+  "name": "api-test-harness",
+  "version": "1.0.0",
+  "description": "Dev-only CRUD API test harness for LoyaltyService — not deployed (excluded from mta.yaml and .cdsrc.json build tasks)",
+  "private": true,
+  "keywords": [
+    "ui5",
+    "openui5",
+    "sapui5"
+  ],
+  "main": "webapp/index.html"
+}

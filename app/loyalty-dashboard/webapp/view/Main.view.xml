@@ -34,20 +34,20 @@
                       <ObjectStatus text="{i18n>custLifetimePoints}: {ui>/me/lifetimePoints}" state="None" />
                     </statuses>
                   </ObjectHeader>
-                  <form:SimpleForm editable="true" title="Register a purchase" layout="ColumnLayout" columns="4">
-                    <Label text="Channel" />
+                  <form:SimpleForm editable="true" title="{i18n>purchaseRegisterTitle}" layout="ColumnLayout" columns="4">
+                    <Label text="{i18n>purchaseChannel}" />
                     <Select id="custChannel" change=".onCustPurchaseHint">
                       <core:Item key="Online" text="Online" />
                       <core:Item key="Store" text="Store" />
                     </Select>
-                    <Label text="Product price (₹)" />
+                    <Label text="{i18n>productPrice}" />
                     <Input id="custPrice" type="Number" placeholder="0.00" liveChange=".onCustPurchaseHint" />
-                    <Label text="Points to use (optional)" />
+                    <Label text="{i18n>pointsToUse}" />
                     <Input id="custPoints" type="Number" placeholder="0" liveChange=".onCustPurchaseHint" />
-                    <Label text="Earn rate" labelFor="custRateHint" />
+                    <Label text="{i18n>earnRate}" labelFor="custRateHint" />
                     <Text id="custRateHint" text="" />
                     <Label />
-                    <Button text="Register purchase" type="Emphasized" icon="sap-icon://add-activity-2" press=".onCustomerPurchase" />
+                    <Button text="{i18n>purchaseRegisterBtn}" type="Emphasized" icon="sap-icon://add-activity-2" press=".onCustomerPurchase" />
                   </form:SimpleForm>
 
                   <form:SimpleForm editable="true" title="{i18n>redeemTitle}" layout="ColumnLayout" columns="4">
@@ -62,11 +62,11 @@
                   <Table id="myTxnTable" headerText="{i18n>custHistory}" items="{ui>/myTxns}"
                     growing="true" growingThreshold="10" class="sapUiSmallMarginTop">
                     <columns>
-                      <Column><Text text="Date" /></Column>
-                      <Column><Text text="Channel" /></Column>
-                      <Column hAlign="End"><Text text="Amount (₹)" /></Column>
-                      <Column hAlign="End"><Text text="Points used" /></Column>
-                      <Column hAlign="End"><Text text="Points" /></Column>
+                      <Column><Text text="{i18n>colDate}" /></Column>
+                      <Column><Text text="{i18n>purchaseChannel}" /></Column>
+                      <Column hAlign="End"><Text text="{i18n>purchaseAmount}" /></Column>
+                      <Column hAlign="End"><Text text="{i18n>colPointsUsed}" /></Column>
+                      <Column hAlign="End"><Text text="{i18n>colPoints}" /></Column>
                     </columns>
                     <items>
                       <ColumnListItem>
@@ -84,9 +84,9 @@
                   <Table id="myRedTable" headerText="{i18n>custRedemptions}" items="{ui>/myReds}"
                     growing="true" growingThreshold="10" class="sapUiSmallMarginTop">
                     <columns>
-                      <Column><Text text="Date" /></Column>
-                      <Column hAlign="End"><Text text="Points used" /></Column>
-                      <Column><Text text="Remarks" /></Column>
+                      <Column><Text text="{i18n>colDate}" /></Column>
+                      <Column hAlign="End"><Text text="{i18n>colPointsUsed}" /></Column>
+                      <Column><Text text="{i18n>colRemarks}" /></Column>
                     </columns>
                     <items>
                       <ColumnListItem>
@@ -108,6 +108,7 @@
                     <HBox class="kpiStrip">
                       <GenericTile header="{i18n>kpiCustomers}"><tileContent><TileContent><content><NumericContent value="{ui>/kpiStaff/customers}" /></content></TileContent></tileContent></GenericTile>
                       <GenericTile header="{i18n>kpiTransactions}"><tileContent><TileContent><content><NumericContent value="{ui>/kpiStaff/purchases}" /></content></TileContent></tileContent></GenericTile>
+                      <GenericTile header="{i18n>kpiPurchasesToday}"><tileContent><TileContent><content><NumericContent value="{ui>/kpiStaff/today}" /></content></TileContent></tileContent></GenericTile>
                       <GenericTile header="{i18n>kpiPointsIssued}"><tileContent><TileContent><content><NumericContent value="{ui>/kpiStaff/pointsIssued}" /></content></TileContent></tileContent></GenericTile>
                       <GenericTile header="{i18n>kpiIssuedOnline}"><tileContent><TileContent><content><NumericContent value="{ui>/kpiStaff/online}" /></content></TileContent></tileContent></GenericTile>
                       <GenericTile header="{i18n>kpiIssuedStore}"><tileContent><TileContent><content><NumericContent value="{ui>/kpiStaff/store}" withMargin="false" /></content></TileContent></tileContent></GenericTile>
@@ -144,11 +145,11 @@
                         <core:Item key="Online" text="Online" />
                         <core:Item key="Store" text="Store" />
                       </Select>
-                      <Label text="Product price (₹)" />
+                      <Label text="{i18n>productPrice}" />
                       <Input id="purchasePrice" type="Number" placeholder="0.00" liveChange=".onRateHintRefresh" />
-                      <Label text="Points to use (optional)" />
+                      <Label text="{i18n>pointsToUse}" />
                       <Input id="purchasePoints" type="Number" placeholder="0" liveChange=".onRateHintRefresh" />
-                      <Label text="Earn rate" labelFor="rateHint" />
+                      <Label text="{i18n>earnRate}" labelFor="rateHint" />
                       <Text id="rateHint" text="" />
                       <Label />
                       <Button text="{i18n>purchaseSubmit}" type="Emphasized" icon="sap-icon://add-activity-2" press=".onRecordPurchase" />
@@ -180,7 +181,7 @@
                       <GenericTile header="{i18n>kpiIssuedStore}"><tileContent><TileContent><content><NumericContent value="{ui>/kpisAdmin/store}" /></content></TileContent></tileContent></GenericTile>
                       <GenericTile header="{i18n>kpiPointsRedeemed}"><tileContent><TileContent><content><NumericContent value="{ui>/kpisAdmin/pointsRedeemed}" /></content></TileContent></tileContent></GenericTile>
                       <GenericTile header="{i18n>kpiTransactions}"><tileContent><TileContent><content><NumericContent value="{ui>/kpisAdmin/purchases}" /></content></TileContent></tileContent></GenericTile>
-                      <GenericTile header="{i18n>kpiRedemptions}"><tileContent><TileContent><content><NumericContent value="{ui>/kpisAdmin/redemptions}" withMargin="false" /></content></TileContent></tileContent></GenericTile>
+                      <GenericTile header="{i18n>kpiOutstanding}"><tileContent><TileContent><content><NumericContent value="{ui>/kpisAdmin/outstanding}" withMargin="false" /></content></TileContent></tileContent></GenericTile>
                     </HBox>
                   </Panel>
 
@@ -205,10 +206,10 @@
 
                       <Table headerText="{i18n>custHistory}" items="{ui>/adminTxns}" growing="true" growingThreshold="10">
                         <columns>
-                          <Column><Text text="Date" /></Column>
-                          <Column><Text text="Channel" /></Column>
-                          <Column hAlign="End"><Text text="Amount (₹)" /></Column>
-                          <Column hAlign="End"><Text text="Points" /></Column>
+                          <Column><Text text="{i18n>colDate}" /></Column>
+                          <Column><Text text="{i18n>purchaseChannel}" /></Column>
+                          <Column hAlign="End"><Text text="{i18n>purchaseAmount}" /></Column>
+                          <Column hAlign="End"><Text text="{i18n>colPoints}" /></Column>
                         </columns>
                         <items>
                           <ColumnListItem>
@@ -224,9 +225,9 @@
 
                       <Table headerText="{i18n>custRedemptions}" items="{ui>/adminReds}" growing="true" growingThreshold="10" class="sapUiSmallMarginTop">
                         <columns>
-                          <Column><Text text="Date" /></Column>
-                          <Column hAlign="End"><Text text="Points used" /></Column>
-                          <Column><Text text="Remarks" /></Column>
+                          <Column><Text text="{i18n>colDate}" /></Column>
+                          <Column hAlign="End"><Text text="{i18n>colPointsUsed}" /></Column>
+                          <Column><Text text="{i18n>colRemarks}" /></Column>
                         </columns>
                         <items>
                           <ColumnListItem>

@@ -1,0 +1,26 @@
+{
+  "_version": "1.58.0",
+  "sap.app": {
+    "id": "apitestharness",
+    "type": "application",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "Loyalty CRUD API Test Harness",
+    "description": "Dev-only CRUD matrix runner for LoyaltyService"
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.100.0"
+    }
+  }
+}

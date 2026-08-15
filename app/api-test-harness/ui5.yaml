@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+# Dev-only CRUD test harness (see docs/crud-test-results.md).
+# NOT part of the MTA / production deployment — mta.yaml and .cdsrc.json
+# enumerate the shipped UI5 apps explicitly.
+specVersion: "3.0"
+metadata:
+  name: apitestharness
+type: application
+builder:
+  resources:
+    excludes: []

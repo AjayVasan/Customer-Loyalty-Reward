@@ -5,3 +5,10 @@ app/*/webapp/Component-preload.js
 gen/
 .triangle/
 *.mtar
+
+# local dev state / build & deploy artifacts — never commit
+db.sqlite
+mta-op-*/
+.gen/
+mbt/
+*.log

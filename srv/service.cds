@@ -16,6 +16,9 @@ service LoyaltyService @(requires: 'authenticated-user') {
     isAdmin   : Boolean;
     isStaff   : Boolean;
     isCustomer: Boolean;
+    // ₹ value of one reward point (see srv/lib/point-value.js) — single source
+    // of truth so UIs don't hardcode their own copy
+    pointValueInr : Decimal(5,2);
   };
 
   function getUserInfo() returns UserInfo;

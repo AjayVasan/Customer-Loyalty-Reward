@@ -1,22 +1,71 @@
-# Getting Started
+# Retail Omni-Channel Customer Loyalty & Rewards
 
-Welcome to your new CAP project.
+SAP BTP CAP (Node.js) + Fiori UI5 application that unifies online and in-store
+(POS) purchases, computes loyalty points dynamically per channel policy, and
+handles redemptions with a guaranteed-never-negative balance. Problem statement:
+[`txt.md`](txt.md).
 
-It contains these folders and files, following our recommended project layout:
+## Roles (per txt.md)
 
-File or Folder | Purpose
----------|----------
-`app/` | content for UI frontends goes here
-`db/` | your domain models and data go here
-`srv/` | your service models and code go here
-`readme.md` | this getting started guide
+| Role | Capability in this app |
+|---|---|
+| **Customer** | Points balance, tier, purchase history, redemption history; redeem points; register own purchases (with optional points part-payment); self-onboards on first login |
+| **Retail Staff** | Find customer by email (identity only), record POS/Online purchases, onboard customers; daily KPI tiles incl. *Purchases today* |
+| **Admin** | Reward policies (₹1 = X points, per channel), tier thresholds, gated customer-360 lookup, program KPIs incl. *Outstanding points* (open liability) |
 
-## Next Steps
+## Architecture
 
-- Open a new terminal and run `cds watch`
-- (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
-- Start with your domain model, in a CDS file in `db/`
+```
+Fiori UIs (app/)                      CAP service (srv/)                 Persistence (db/)
+├─ loyalty-dashboard  (custom)  ──►   LoyaltyService /odata/v4/loyalty   SQLite (dev/test, in-memory)
+├─ customers-management       │       • points engine (channel policy)   SAP HANA Cloud HDI (prod)
+├─ transactions-management    │       • redemption + part-payment       via @cap-js/hana
+├─ reward-policies            │       • atomic guarded balance UPDATES
+└─ tier-thresholds-management ┘       • role guards (@restrict + handlers)
+```
 
-## Learn More
+- **Domain model** — spec-conformance mapping: [docs/data-model.md](docs/data-model.md)
+- **Business rules** — `srv/handlers/` (transaction, redemption, policy); policy rates cached,
+  tier recompute on threshold change, `pointValueInr` (₹0.50/point) exposed via `getUserInfo()`.
+- **Security** — `@restrict` matrix per entity/role; ownership guards for customer self-service;
+  XSUAA in production (`xs-security.json`), basic-auth mock users in dev/test.
+- **Change tracking** — `@cap-js/change-tracking` on balance, tier, policies, thresholds.
 
-Learn more at <https://cap.cloud.sap>.
+## Run locally
+
+```bash
+npm install
+npm run watch        # cds watch; login as alice (customer) / bob (staff) / carol (admin), password "pass"
+```
+
+Dashboard: `http://localhost:4004/loyaltydashboard/index.html` — the browser will prompt
+for basic-auth credentials. Data lives in memory (CSV-seeded); restart resets it.
+
+## Test
+
+```bash
+npm test             # 12 cases: points math, part-payment, validation, tier transitions,
+                     # concurrency guard, role guards — node --test + @cap-js/cds-test
+```
+
+Test case sheet (incl. manual UI cases): [docs/test-cases.md](docs/test-cases.md).
+
+## Deploy to SAP BTP Cloud Foundry (SAP HANA Cloud)
+
+```bash
+npm run build && npm run deploy
+```
+
+Full flow, MTA modules, and verification steps: [docs/deployment.md](docs/deployment.md).
+
+## Project docs
+
+| Document | Content |
+|---|---|
+| [docs/data-model.md](docs/data-model.md) | Data Model Design — txt.md attribute-by-attribute conformance + extensions |
+| [docs/sprint-plan.md](docs/sprint-plan.md) | Agile delivery plan, user stories, acceptance criteria, HANA tasks |
+| [docs/test-cases.md](docs/test-cases.md) | Test Case Sheet |
+| [docs/deployment.md](docs/deployment.md) | Deployment Steps (BTP CF + HANA Cloud) |
+| [docs/build-code-prompts.md](docs/build-code-prompts.md) | Build Code (Joule) prompt log — assignment deliverable |
+| [docs/commands-reference.md](docs/commands-reference.md) | Commands used + real sample outputs (dev, test, build, deploy) |
+| [docs/crud-test-results.md](docs/crud-test-results.md) | Executed CRUD matrix — 38/38 cases with actual responses |

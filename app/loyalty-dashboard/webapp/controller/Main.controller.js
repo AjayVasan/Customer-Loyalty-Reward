@@ -17,8 +17,8 @@ sap.ui.define(
           isAdmin: false,
           isStaff: false,
           isCustomer: false,
-          kpiStaff: { customers: '–', purchases: '–', pointsIssued: '–', online: '–', store: '–' },
-          kpisAdmin: { customers: '–', online: '–', store: '–', pointsRedeemed: '–', purchases: '–', redemptions: '–' },
+          kpiStaff: { customers: '–', purchases: '–', today: '–', pointsIssued: '–', online: '–', store: '–' },
+          kpisAdmin: { customers: '–', online: '–', store: '–', pointsRedeemed: '–', purchases: '–', outstanding: '–' },
           // customer tab: the signed-in user's own record (auto-created on first login)
           me: { customerID: '', name: '', email: '', totalPoints: 0, lifetimePoints: 0, tier: '' },
           myTxns: [],
@@ -29,7 +29,10 @@ sap.ui.define(
           adminCustomer: null,
           adminTxns: [],
           adminReds: [],
-          policies: []
+          policies: [],
+          // ₹ value of one reward point — server-owned (getUserInfo), seeded
+          // only until the bootstrap response lands
+          pointValueInr: 0.5
         })
         this.getView().setModel(ui, 'ui')
         this._bootstrap().catch((err) => this._error(this._i18n('errRequest'), err))
@@ -54,6 +57,7 @@ sap.ui.define(
         ui.setProperty('/isAdmin', !!user.isAdmin)
         ui.setProperty('/isStaff', !!user.isStaff)
         ui.setProperty('/isCustomer', !!user.isCustomer)
+        if (user.pointValueInr != null) ui.setProperty('/pointValueInr', Number(user.pointValueInr))
 
         try {
           const polRes = await this._fetch('RewardPolicies?$select=policyID,channel,pointsPerCurrencyUnit')
@@ -121,7 +125,10 @@ sap.ui.define(
       refreshKpis: async function () {
         const ui = this.getView().getModel('ui')
         const isAdmin = ui.getProperty('/isAdmin')
-        const count = async (set) => String((await this._fetch(set + '?$count=true'))['@odata.count'] ?? 0)
+        const count = async (set, filter) => {
+          const path = set + '?$count=true' + (filter ? '&$filter=' + encodeURIComponent(filter) : '')
+          return String((await this._fetch(path))['@odata.count'] ?? 0)
+        }
         // per-channel points issued via $apply groupby (CAP ignores $filter+$apply combos)
         const byChannel = async () => {
           const j = await this._fetch('Transactions?$apply=' +
@@ -131,20 +138,30 @@ sap.ui.define(
           return map
         }
         if (isAdmin) {
-          const [cust, tx, red, chan, redAgg] = await Promise.all([
-            count('Customers'), count('Transactions'), count('Redemptions'), byChannel(),
-            this._fetch('Redemptions?$apply=' + encodeURIComponent('aggregate(pointsUsed with sum as total)'))
+          const [cust, tx, chan, redAgg, outAgg] = await Promise.all([
+            count('Customers'), count('Transactions'), byChannel(),
+            this._fetch('Redemptions?$apply=' + encodeURIComponent('aggregate(pointsUsed with sum as total)')),
+            // outstanding points = sum of live customer balances: the program's
+            // open liability (points issued but not yet redeemed)
+            this._fetch('Customers?$apply=' + encodeURIComponent('aggregate(totalPoints with sum as total)'))
           ])
           const redeemed = String((redAgg.value && redAgg.value[0] && redAgg.value[0].total) || 0)
+          const outstanding = String((outAgg.value && outAgg.value[0] && outAgg.value[0].total) || 0)
           ui.setProperty('/kpisAdmin', {
-            customers: cust, purchases: tx, redemptions: red,
+            customers: cust, purchases: tx, outstanding: outstanding,
             online: String(chan.Online || 0), store: String(chan.Store || 0), pointsRedeemed: redeemed
           })
         } else {
-          // staff: Customers + Transactions only (no Redemptions read access)
-          const [cust, tx, chan] = await Promise.all([count('Customers'), count('Transactions'), byChannel()])
+          // staff: Customers + Transactions only (no Redemptions read access).
+          // "today" counts purchases since local midnight — the staff desk's
+          // actual daily workload, unlike the all-time totals beside it.
+          const startOfDay = new Date()
+          startOfDay.setHours(0, 0, 0, 0)
+          const todayFilter = 'txnDate ge ' + startOfDay.toISOString()
+          const [cust, tx, today, chan] = await Promise.all([
+            count('Customers'), count('Transactions'), count('Transactions', todayFilter), byChannel()])
           ui.setProperty('/kpiStaff', {
-            customers: cust, purchases: tx,
+            customers: cust, purchases: tx, today: today,
             online: String(chan.Online || 0), store: String(chan.Store || 0),
             pointsIssued: String((chan.Online || 0) + (chan.Store || 0))
           })
@@ -268,19 +285,21 @@ sap.ui.define(
 
       // ---------- purchase math (staff + customer forms share this) ----------
 
-      // reward-point part-payment value (₹ per point) — mirrors
-      // srv/lib/point-value.js; the backend recomputes authoritatively.
-      _PURCHASE_POINT_VALUE: 0.5,
+      // ₹ value of one reward point comes from the server (getUserInfo →
+      // /pointValueInr, backed by srv/lib/point-value.js); the backend
+      // recomputes authoritatively. No client-side mirror to drift.
 
       _purchaseHint: function (priceIn, pointsIn, channel, balance) {
-        const pol = (this.getView().getModel('ui').getProperty('/policies') || []).find((p) => p.channel === channel)
+        const ui = this.getView().getModel('ui')
+        const pol = (ui.getProperty('/policies') || []).find((p) => p.channel === channel)
         const rate = pol ? parseFloat(pol.pointsPerCurrencyUnit) : 0
+        const pointValue = Number(ui.getProperty('/pointValueInr')) || 0.5
         const price = Math.floor((parseFloat(priceIn) || 0) * 2) / 2 // ₹0.50 denominations
-        const maxPts = Math.min(balance || 0, Math.floor(price / this._PURCHASE_POINT_VALUE))
+        const maxPts = Math.min(balance || 0, Math.floor(price / pointValue))
         let pts = Math.floor(parseFloat(pointsIn) || 0)
         if (pts < 0) pts = 0
         if (pts > maxPts) pts = maxPts
-        const covered = pts * this._PURCHASE_POINT_VALUE
+        const covered = pts * pointValue
         const payable = price - covered
         const earned = Math.floor(payable * rate)
         const parts = ['₹1 = ' + rate + ' pts (' + channel + ')', 'price ₹' + price.toFixed(2)]
