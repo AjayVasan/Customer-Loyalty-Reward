@@ -137,35 +137,46 @@ sap.ui.define(
           ;(j.value || []).forEach((r) => { map[r.channel] = r.total || 0 })
           return map
         }
+        // Fill every strip the signed-in user can see: an admin+staff login
+        // gets both tabs, and the admin READ grants cover the staff strip's
+        // Customers/Transactions queries too.
+        const isStaff = ui.getProperty('/isStaff')
+        const jobs = []
         if (isAdmin) {
-          const [cust, tx, chan, redAgg, outAgg] = await Promise.all([
-            count('Customers'), count('Transactions'), byChannel(),
-            this._fetch('Redemptions?$apply=' + encodeURIComponent('aggregate(pointsUsed with sum as total)')),
-            // outstanding points = sum of live customer balances: the program's
-            // open liability (points issued but not yet redeemed)
-            this._fetch('Customers?$apply=' + encodeURIComponent('aggregate(totalPoints with sum as total)'))
-          ])
-          const redeemed = String((redAgg.value && redAgg.value[0] && redAgg.value[0].total) || 0)
-          const outstanding = String((outAgg.value && outAgg.value[0] && outAgg.value[0].total) || 0)
-          ui.setProperty('/kpisAdmin', {
-            customers: cust, purchases: tx, outstanding: outstanding,
-            online: String(chan.Online || 0), store: String(chan.Store || 0), pointsRedeemed: redeemed
-          })
-        } else {
-          // staff: Customers + Transactions only (no Redemptions read access).
-          // "today" counts purchases since local midnight — the staff desk's
-          // actual daily workload, unlike the all-time totals beside it.
-          const startOfDay = new Date()
-          startOfDay.setHours(0, 0, 0, 0)
-          const todayFilter = 'txnDate ge ' + startOfDay.toISOString()
-          const [cust, tx, today, chan] = await Promise.all([
-            count('Customers'), count('Transactions'), count('Transactions', todayFilter), byChannel()])
-          ui.setProperty('/kpiStaff', {
-            customers: cust, purchases: tx, today: today,
-            online: String(chan.Online || 0), store: String(chan.Store || 0),
-            pointsIssued: String((chan.Online || 0) + (chan.Store || 0))
-          })
+          jobs.push((async () => {
+            const [cust, tx, chan, redAgg, outAgg] = await Promise.all([
+              count('Customers'), count('Transactions'), byChannel(),
+              this._fetch('Redemptions?$apply=' + encodeURIComponent('aggregate(pointsUsed with sum as total)')),
+              // outstanding points = sum of live customer balances: the program's
+              // open liability (points issued but not yet redeemed)
+              this._fetch('Customers?$apply=' + encodeURIComponent('aggregate(totalPoints with sum as total)'))
+            ])
+            const redeemed = String((redAgg.value && redAgg.value[0] && redAgg.value[0].total) || 0)
+            const outstanding = String((outAgg.value && outAgg.value[0] && outAgg.value[0].total) || 0)
+            ui.setProperty('/kpisAdmin', {
+              customers: cust, purchases: tx, outstanding: outstanding,
+              online: String(chan.Online || 0), store: String(chan.Store || 0), pointsRedeemed: redeemed
+            })
+          })())
         }
+        if (isAdmin || isStaff) {
+          jobs.push((async () => {
+            // staff: Customers + Transactions only (no Redemptions read access).
+            // "today" counts purchases since local midnight — the staff desk's
+            // actual daily workload, unlike the all-time totals beside it.
+            const startOfDay = new Date()
+            startOfDay.setHours(0, 0, 0, 0)
+            const todayFilter = 'txnDate ge ' + startOfDay.toISOString()
+            const [cust, tx, today, chan] = await Promise.all([
+              count('Customers'), count('Transactions'), count('Transactions', todayFilter), byChannel()])
+            ui.setProperty('/kpiStaff', {
+              customers: cust, purchases: tx, today: today,
+              online: String(chan.Online || 0), store: String(chan.Store || 0),
+              pointsIssued: String((chan.Online || 0) + (chan.Store || 0))
+            })
+          })())
+        }
+        await Promise.all(jobs)
       },
 
       // ---------- customer: redeem ----------
