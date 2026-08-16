@@ -1,4 +1,4 @@
-# Retail Omni-Channel Customer Loyalty & Rewards Management System
+# Retail Customer Loyalty & Rewards Management System
 
 **SAP BTP CAP (CAPM) Capstone Project — AASE QC Final Round**
 
@@ -41,7 +41,7 @@
 
 This system unifies online and in-store retail purchases into one loyalty program: a single customer record, one points balance, channel-specific earn rates that an admin can change at runtime, and redemptions that are validated so a balance can never go below zero. It was built with SAP CAP on Node.js, exposed as OData v4, fronted by Fiori UI5 apps for three roles, and deployed to SAP BTP Cloud Foundry with SAP HANA Cloud as the production database.
 
-## 1.2 Background — why omni-channel loyalty is a real problem
+## 1.2 Background — why cross-channel loyalty is a real problem
 
 A retailer that runs both an e-commerce site and physical outlets typically ends up with two disconnected reward stories: points earned online cannot be spent at the counter, balances drift, and nobody — least of all the customer — trusts the number. The business also wants the reward rate to be a lever (earn more online to push digital adoption), which means rates are configuration, not code. Finally, points are a financial liability: the balance column must be protected against over-redemption, concurrent double-spend, and direct tampering through the API.
 

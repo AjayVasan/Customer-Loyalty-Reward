@@ -1,4 +1,4 @@
-# Retail Omni-Channel Customer Loyalty & Rewards
+# Retail Customer Loyalty & Rewards
 
 ![SAP CAP](https://img.shields.io/badge/SAP-CAP%20(Node.js)-0a6ed1)
 ![UI5](https://img.shields.io/badge/Fiori-UI5%20OData%20v4-0a6ed1)
